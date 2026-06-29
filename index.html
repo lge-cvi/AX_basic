@@ -1,0 +1,2508 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>고객가치혁신부문 AX 기초 과정</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=Outfit:wght@400;600;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        :root {
+            --lge-red: #C10933;
+            --lge-red-hover: #A00728;
+            --lge-dark: #1F1F1F;
+            --lge-gray: #4A4A4A;
+            --lge-light-bg: #F9FAFB;
+            --lge-border: #E5E7EB;
+            --ms-blue: #0078D4;
+            --copilot-purple: #624BFF;
+            --cowork-orange: #F97316;
+        }
+
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            color: var(--lge-dark);
+            line-height: 1.8;
+            scroll-behavior: smooth;
+            background-color: var(--lge-light-bg);
+        }
+
+        .font-outfit {
+            font-family: 'Outfit', sans-serif;
+        }
+
+        .nav-sidebar {
+            position: fixed;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 340px;
+            background: #ffffff;
+            border-right: 1px solid var(--lge-border);
+            padding: 40px 24px;
+            z-index: 100;
+            overflow-y: auto;
+            box-shadow: 4px 0 20px rgba(0, 0, 0, 0.02);
+        }
+
+        .main-content {
+            margin-left: 340px;
+            padding: 0;
+            background: #ffffff;
+        }
+
+        .section-header {
+            border-left: 5px solid var(--lge-red);
+            padding-left: 15px;
+            margin-bottom: 30px;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--lge-dark);
+        }
+
+        .curriculum-item {
+            padding: 12px 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            margin-bottom: 6px;
+            font-size: 14px;
+            color: var(--lge-gray);
+            font-weight: 500;
+            line-height: 1.4;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .curriculum-item:hover {
+            background: rgba(193, 9, 51, 0.05);
+            color: var(--lge-red);
+        }
+
+        .curriculum-item.active {
+            background: var(--lge-red);
+            color: white;
+            font-weight: 700;
+            box-shadow: 0 4px 12px rgba(193, 9, 51, 0.2);
+        }
+
+        .content-section {
+            padding: 80px 60px;
+            max-width: 1200px;
+            border-bottom: 1px solid var(--lge-border);
+        }
+
+        .info-box {
+            background: rgba(193, 9, 51, 0.02);
+            border-left: 4px solid var(--lge-red);
+            padding: 24px;
+            margin: 24px 0;
+            border-radius: 0 12px 12px 0;
+        }
+
+        .free-box {
+            background: rgba(0, 120, 212, 0.02);
+            border-left: 4px solid var(--ms-blue);
+            padding: 24px;
+            margin: 24px 0;
+            border-radius: 0 12px 12px 0;
+        }
+
+        .cowork-box {
+            background: rgba(249, 115, 22, 0.02);
+            border-left: 4px solid var(--cowork-orange);
+            padding: 24px;
+            margin: 24px 0;
+            border-radius: 0 12px 12px 0;
+        }
+
+        .prompt-container {
+            background: #F8FAFC;
+            border: 1px solid #E2E8F0;
+            border-radius: 12px;
+            overflow: hidden;
+            margin: 24px 0;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.02);
+        }
+
+        .prompt-header {
+            background: #EDF2F7;
+            padding: 10px 18px;
+            font-size: 13px;
+            font-weight: 700;
+            color: #4A5568;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid #E2E8F0;
+        }
+
+        .prompt-body {
+            padding: 20px 24px;
+            font-family: 'Consolas', 'Monaco', monospace;
+            font-size: 14px;
+            color: #1A202C;
+            white-space: pre-line;
+            line-height: 1.6;
+        }
+
+        .ui-mockup {
+            border: 1px solid #D1D5DB;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            background: #fff;
+        }
+
+        .ui-mockup-header {
+            background: #F3F4F6;
+            border-bottom: 1px solid #E5E7EB;
+            padding: 8px 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+        }
+
+        .dot-red {
+            background-color: #EF4444;
+        }
+
+        .dot-yellow {
+            background-color: #FBBF24;
+        }
+
+        .dot-green {
+            background-color: #10B981;
+        }
+
+        .btn-hover-effect {
+            transition: all 0.2s ease;
+        }
+
+        .btn-hover-effect:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(193, 9, 51, 0.2);
+        }
+
+        /* ── 인라인 용어 풀이 (해당 용어가 나올 때 바로 확인) ── */
+        .term {
+            position: relative;
+            color: var(--lge-red);
+            font-weight: 700;
+            border-bottom: 1px dashed var(--lge-red);
+            cursor: help;
+            outline: none;
+        }
+
+        .term .term-def {
+            position: absolute;
+            bottom: 145%;
+            left: 0;
+            width: 270px;
+            max-width: 80vw;
+            background: #1F1F1F;
+            color: #fff;
+            font-weight: 400;
+            font-size: 12px;
+            line-height: 1.65;
+            padding: 12px 14px;
+            border-radius: 10px;
+            box-shadow: 0 10px 28px rgba(0, 0, 0, 0.22);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(6px);
+            transition: all 0.18s ease;
+            z-index: 60;
+            border-bottom: none;
+            white-space: normal;
+        }
+
+        .term .term-def strong {
+            color: #ff8fa3;
+        }
+
+        .term .term-def::after {
+            content: '';
+            position: absolute;
+            top: 100%;
+            left: 22px;
+            border: 6px solid transparent;
+            border-top-color: #1F1F1F;
+        }
+
+        .term:hover .term-def,
+        .term:focus .term-def,
+        .term:focus-within .term-def {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .term-badge {
+            display: inline-block;
+            background: rgba(193, 9, 51, 0.1);
+            color: var(--lge-red);
+            font-size: 10px;
+            font-weight: 700;
+            padding: 1px 6px;
+            border-radius: 6px;
+            margin-right: 4px;
+            vertical-align: middle;
+        }
+
+        /* ── 트러블슈팅 모달 ── */
+        .ts-modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(15, 23, 42, 0.55);
+            z-index: 999;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            backdrop-filter: blur(2px);
+        }
+
+        .ts-modal-overlay.open {
+            display: flex;
+        }
+
+        .ts-modal {
+            background: #fff;
+            border-radius: 18px;
+            max-width: 520px;
+            width: 100%;
+            padding: 32px 30px;
+            box-shadow: 0 24px 60px rgba(0, 0, 0, 0.3);
+            position: relative;
+            animation: tsPop 0.2s ease;
+        }
+
+        @keyframes tsPop {
+            from { transform: scale(0.96); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        .ts-modal-close {
+            position: absolute;
+            top: 16px;
+            right: 18px;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: #F3F4F6;
+            color: #4A5568;
+            border: none;
+            font-size: 18px;
+            cursor: pointer;
+            transition: all 0.15s;
+        }
+
+        .ts-modal-close:hover {
+            background: #E5E7EB;
+        }
+
+        /* ── 화면 위치 안내용 간단 목업(스크린샷 대체) ── */
+        .mock-window {
+            display: flex;
+            border: 1px solid #D1D5DB;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+            background: #fff;
+            min-height: 180px;
+        }
+
+        .mock-rail {
+            width: 56px;
+            background: #F3F4F6;
+            border-right: 1px solid #E5E7EB;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 12px 0;
+            gap: 14px;
+        }
+
+        .mock-rail .ric {
+            width: 30px;
+            height: 30px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #9CA3AF;
+            font-size: 14px;
+        }
+
+        .mock-rail .ric.copilot {
+            background: #fff;
+            color: var(--copilot-purple);
+            box-shadow: 0 0 0 3px var(--lge-red);
+            position: relative;
+        }
+
+        .mock-body {
+            flex: 1;
+            padding: 14px 16px;
+            position: relative;
+        }
+
+        .mock-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: #fff;
+            border: 1px solid #D1D5DB;
+            border-radius: 999px;
+            padding: 5px 12px;
+            font-size: 12px;
+            font-weight: 600;
+            color: #374151;
+        }
+
+        .mock-pill.hl {
+            box-shadow: 0 0 0 3px var(--lge-red);
+            border-color: transparent;
+        }
+
+        .mock-callout {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: var(--lge-red);
+            color: #fff;
+            font-size: 11px;
+            font-weight: 700;
+            padding: 3px 9px;
+            border-radius: 6px;
+        }
+
+        kbd {
+            font-family: 'Consolas', monospace;
+        }
+
+        @media (max-width: 1150px) {
+            .nav-sidebar {
+                display: none;
+            }
+
+            .main-content {
+                margin-left: 0;
+            }
+
+            .content-section {
+                padding: 60px 20px;
+            }
+        }
+    </style>
+</head>
+
+<body class="antialiased">
+
+    <!-- Sidebar Navigation -->
+    <nav class="nav-sidebar">
+        <div class="mb-10 text-center">
+            <div class="flex items-center justify-center mb-3">
+                <img src="https://www.lge.co.kr/lg5-common/images/header/lg_logo_new.svg" alt="LG Logo"
+                    class="h-8 md:h-9">
+            </div>
+            <div class="bg-red-50 text-[#C10933] text-xs font-bold px-3 py-1 rounded-full inline-block mb-3">AX 기초 교육
+            </div>
+            <h1 class="text-lg font-bold text-gray-800">실무자 맞춤형<br>AI 활용 A to Z</h1>
+            <p class="text-xs text-gray-400 mt-2">브라우저와 웹으로 즉시 적용하는 업무 공식</p>
+        </div>
+
+        <div class="space-y-1">
+            <a href="#curriculum" class="curriculum-item active">
+                <i class="fa-solid fa-list-check w-5 text-center"></i> 01. 교육 소개 &amp; 시간표
+            </a>
+            <a href="#ai-theory" class="curriculum-item">
+                <i class="fa-solid fa-brain w-5 text-center"></i> 02. AI 모델 &amp; AI 에이전트 이론
+            </a>
+            <a href="#welcome" class="curriculum-item">
+                <i class="fa-solid fa-handshake w-5 text-center"></i> 03. Copilot, 어떻게 쓰는 건가요?
+            </a>
+            <a href="#free-feature-map" class="curriculum-item">
+                <i class="fa-solid fa-circle-info w-5 text-center"></i> 04. Copilot 핵심 기능 도감
+            </a>
+            <a href="#access-method" class="curriculum-item">
+                <i class="fa-solid fa-sliders w-5 text-center"></i> 05. 업무 효율을 극대화하는 3대 접속 공식
+            </a>
+            <a href="#scenario-edge" class="curriculum-item">
+                <i class="fa-solid fa-file-pdf w-5 text-center"></i> 06. [실전 A to Z] PDF &amp; 웹 문서 요약
+            </a>
+            <a href="#scenario-outlook" class="curriculum-item">
+                <i class="fa-solid fa-envelope w-5 text-center"></i> 07. [실전 A to Z] Outlook 이메일 연동
+            </a>
+            <a href="#ms-cowork" class="curriculum-item">
+                <i class="fa-solid fa-file-lines w-5 text-center"></i> 08. [실전 A to Z] 주간보고 요약자료
+            </a>
+            <a href="#prompt-builder" class="curriculum-item">
+                <i class="fa-solid fa-gears w-5 text-center"></i> 09. CC&amp;S 맞춤형 프롬프트 빌더
+            </a>
+            <a href="#summary" class="curriculum-item">
+                <i class="fa-solid fa-flag-checkered w-5 text-center"></i> 10. 교육 요약 &amp; 핵심 정리
+            </a>
+        </div>
+    </nav>
+
+
+    <!-- Main Content -->
+    <main class="main-content">
+
+        <!-- 동아일보 기사 도입 배너 -->
+        <div
+            style="background: linear-gradient(135deg, #1F1F1F 0%, #2d2d2d 100%); padding: 36px 60px; border-bottom: 4px solid #C10933;">
+            <div style="max-width:1100px; display:flex; align-items:center; gap:40px; flex-wrap:wrap;">
+                <div style="flex:1; min-width:260px;">
+                    <div
+                        style="display:inline-flex; align-items:center; gap:8px; background:rgba(193,9,51,0.2); border:1px solid rgba(193,9,51,0.4); border-radius:999px; padding:4px 14px; margin-bottom:14px;">
+                        <span
+                            style="width:8px;height:8px;background:#C10933;border-radius:50%;display:inline-block;"></span>
+                        <span style="font-size:11px; font-weight:700; color:#ff8fa3; letter-spacing:0.05em;">동아일보 ·
+                            2026년 5월 12일</span>
+                    </div>
+                    <h2
+                        style="font-family:'Outfit',sans-serif; font-size:1.55rem; font-weight:800; color:#ffffff; line-height:1.35; margin-bottom:12px;">
+                        "AI가 아니라 <span style="color:#ff6b6b;">'AI 잘 쓰는 사람'</span>이<br>일자리를 대체한다"
+                    </h2>
+                    <p style="font-size:13px; color:#b0b0b0; line-height:1.7; margin-bottom:16px;">
+                        엔비디아 젠슨 황 CEO가 카네기멜런대 졸업 연설에서 강조한 메시지입니다.<br>
+                        AI 자체가 사람을 대체하는 것이 아니라, <strong style="color:#ffffff;">AI를 잘 활용하는 능력이 곧 경쟁력</strong>이 되는
+                        시대입니다.<br>
+                        이 교육이 바로 그 출발점입니다.
+                    </p>
+                    <a href="https://www.donga.com/news/People/article/all/20260512/133902362/2" target="_blank"
+                        rel="noopener noreferrer"
+                        style="display:inline-flex; align-items:center; gap:6px; font-size:12px; color:#93c5fd; font-weight:600; text-decoration:none;">
+                        <i class="fa-solid fa-arrow-up-right-from-square" style="font-size:11px;"></i> 기사 전문 보기
+                    </a>
+                </div>
+                <div
+                    style="flex:0 0 auto; background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.1); border-radius:16px; padding:20px 24px; min-width:240px;">
+                    <p
+                        style="font-size:11px; font-weight:700; color:#9ca3af; margin-bottom:10px; text-transform:uppercase; letter-spacing:0.08em;">
+                        오늘 교육 후 할 수 있게 되는 것</p>
+                    <ul style="list-style:none; padding:0; margin:0;">
+                        <li
+                            style="display:flex; align-items:center; gap:8px; font-size:12px; color:#e5e7eb; margin-bottom:8px;">
+                            <span style="color:#a78bfa; font-size:14px;">✓</span> AI 모델·에이전트 개념 이해
+                        </li>
+                        <li
+                            style="display:flex; align-items:center; gap:8px; font-size:12px; color:#e5e7eb; margin-bottom:8px;">
+                            <span style="color:#4ade80; font-size:14px;">✓</span> 영문 보고서를 3분 만에 한글 요약
+                        </li>
+                        <li
+                            style="display:flex; align-items:center; gap:8px; font-size:12px; color:#e5e7eb; margin-bottom:8px;">
+                            <span style="color:#4ade80; font-size:14px;">✓</span> 받은 메일 회신 초안 자동 작성 (한글·영문)
+                        </li>
+                        <li style="display:flex; align-items:center; gap:8px; font-size:12px; color:#e5e7eb;">
+                            <span style="color:#4ade80; font-size:14px;">✓</span> 주간보고 요약자료 반자동화
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- 01. 교육 안내 & 커리큘럼 -->
+        <section id="curriculum" class="content-section">
+            <h2 class="section-header">01. 교육 소개 &amp; 시간표</h2>
+            <p class="text-gray-600 text-lg mb-8">
+                본 교육은 <strong>AI의 기본 개념 이해</strong>부터 <strong>사내 Copilot 실무 적용</strong>까지, 이론과 실습을 함께 익히는 과정입니다.<br>
+                사내 기본 계정과 브라우저만 있으면 오늘 바로 활용할 수 있으며, 복사(Ctrl+C) → 붙여넣기(Ctrl+V) → 전송 세 단계만 할 수 있으면 충분합니다.
+            </p>
+
+            <!-- 오늘 실습 자료 안내 -->
+            <div class="info-box mb-8">
+                <p class="font-bold text-[#C10933] mb-1 text-base"><i class="fa-solid fa-envelope-circle-check mr-1"></i> 오늘 실습 자료는 아침에 메일로 받습니다</p>
+                <p class="text-sm text-gray-700">
+                    오늘 오전, 정선영 선임(CC&amp;S전략팀)이 <strong>모든 참가자에게 동일한 교육 안내 메일 1통</strong>을 보냅니다. 이 메일에는
+                    <strong>강의자료와 실습용 영문 보고서 PDF가 첨부</strong>되어 있고, 본문 끝에 <strong>참가자에게 묻는 간단한 질문 몇 가지</strong>가 적혀 있습니다.
+                    이 메일 하나로 06번(PDF 요약)과 07번(메일 회신) 실습을 진행하니 <strong>메일을 삭제하지 말고 보관</strong>해 주세요.
+                </p>
+            </div>
+
+            <!-- 교육 개요 카드 -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-5 mb-10">
+                <div class="p-5 bg-white border border-gray-200 rounded-xl shadow-sm flex items-start gap-4">
+                    <div class="w-10 h-10 bg-purple-100 rounded-xl flex items-center justify-center shrink-0">
+                        <i class="fa-solid fa-brain text-purple-600"></i>
+                    </div>
+                    <div>
+                        <span class="text-xs font-bold text-purple-600 uppercase">Part 1 · 이론</span>
+                        <h3 class="font-bold text-gray-800 mt-0.5 mb-1">AI 개념 이해</h3>
+                        <p class="text-xs text-gray-500">AI 모델·에이전트의 작동 방식과 Copilot이 ChatGPT와 다른 이유를 이해합니다</p>
+                    </div>
+                </div>
+                <div class="p-5 bg-white border border-gray-200 rounded-xl shadow-sm flex items-start gap-4">
+                    <div class="w-10 h-10 bg-blue-100 rounded-xl flex items-center justify-center shrink-0">
+                        <i class="fa-solid fa-sliders text-blue-600"></i>
+                    </div>
+                    <div>
+                        <span class="text-xs font-bold text-blue-600 uppercase">Part 2 · 기초</span>
+                        <h3 class="font-bold text-gray-800 mt-0.5 mb-1">Copilot 접속 &amp; 핵심 기능</h3>
+                        <p class="text-xs text-gray-500">Teams·아웃룩·Copilot Web 3가지 접속 공식과 핵심 기능 도감을 익힙니다</p>
+                    </div>
+                </div>
+                <div class="p-5 bg-white border border-gray-200 rounded-xl shadow-sm flex items-start gap-4">
+                    <div class="w-10 h-10 bg-orange-100 rounded-xl flex items-center justify-center shrink-0">
+                        <i class="fa-solid fa-rocket text-orange-600"></i>
+                    </div>
+                    <div>
+                        <span class="text-xs font-bold text-orange-600 uppercase">Part 3 · 실무</span>
+                        <h3 class="font-bold text-gray-800 mt-0.5 mb-1">실전 A to Z 3종</h3>
+                        <p class="text-xs text-gray-500">PDF 요약 · Outlook 이메일 · 주간보고 자동화 실습으로 바로 써먹는 공식 완성</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 교육 시간표 -->
+            <h3 class="font-bold text-lg text-gray-800 mb-1">🕒 교육 시간표</h3>
+            <p class="text-xs text-gray-400 mb-4">09:00 ~ 12:00 &nbsp;·&nbsp; 3개 교시 구성, 쉬는 시간 15분 × 2회 포함</p>
+
+            <div class="space-y-4">
+
+                <!-- 1교시 -->
+                <div class="rounded-2xl border border-gray-200 shadow-sm overflow-hidden">
+                    <div class="flex items-center justify-between px-5 py-3 bg-purple-50 border-b border-purple-100">
+                        <div class="flex items-center gap-2">
+                            <span class="bg-purple-600 text-white text-xs font-bold px-3 py-0.5 rounded-full font-outfit">1교시</span>
+                            <span class="font-bold text-gray-800 text-sm">AI 이해하기 <span class="text-purple-600">· 이론</span></span>
+                        </div>
+                        <span class="text-xs font-semibold text-purple-500">09:00–09:40 <span class="font-normal text-purple-300">(40분)</span></span>
+                    </div>
+                    <div class="bg-white divide-y divide-gray-100">
+                        <div class="flex items-center gap-4 px-5 py-3">
+                            <div class="text-center shrink-0 w-16">
+                                <div class="text-xs font-bold text-gray-600">09:00</div>
+                                <div class="text-xs text-gray-400">~09:10</div>
+                            </div>
+                            <div class="flex-1">
+                                <p class="font-semibold text-gray-800 text-sm">오프닝 — 교육 소개 &amp; 오늘의 목표</p>
+                                <p class="text-xs text-gray-400">"AI를 잘 쓰는 사람이 경쟁력" · 오늘 할 수 있게 되는 것 미리보기</p>
+                            </div>
+                            <span class="bg-purple-100 text-purple-700 text-xs font-bold px-2 py-0.5 rounded-full shrink-0">01</span>
+                        </div>
+                        <div class="flex items-center gap-4 px-5 py-3">
+                            <div class="text-center shrink-0 w-16">
+                                <div class="text-xs font-bold text-gray-600">09:10</div>
+                                <div class="text-xs text-gray-400">~09:40</div>
+                            </div>
+                            <div class="flex-1">
+                                <p class="font-semibold text-gray-800 text-sm">AI 모델 &amp; AI 에이전트 이론</p>
+                                <p class="text-xs text-gray-400">GPT·Claude·Gemini 소개, ChatGPT vs Copilot 차이, 에이전트 개념</p>
+                            </div>
+                            <span class="bg-purple-100 text-purple-700 text-xs font-bold px-2 py-0.5 rounded-full shrink-0">02</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 쉬는 시간 (1교시 후) -->
+                <div class="flex items-center justify-center gap-3 bg-amber-50 border border-amber-200 rounded-2xl py-4">
+                    <i class="fa-solid fa-mug-hot text-amber-500"></i>
+                    <span class="font-bold text-amber-800 text-sm">쉬는 시간</span>
+                    <span class="text-xs text-amber-600 font-semibold bg-amber-100 px-2 py-0.5 rounded-full">09:40–09:55</span>
+                    <span class="text-xs text-amber-400">(15분)</span>
+                </div>
+
+                <!-- 2교시 -->
+                <div class="rounded-2xl border border-gray-200 shadow-sm overflow-hidden">
+                    <div class="flex items-center justify-between px-5 py-3 bg-blue-50 border-b border-blue-100">
+                        <div class="flex items-center gap-2">
+                            <span class="bg-blue-600 text-white text-xs font-bold px-3 py-0.5 rounded-full font-outfit">2교시</span>
+                            <span class="font-bold text-gray-800 text-sm">Copilot 기초 다지기 <span class="text-blue-600">· 기초</span></span>
+                        </div>
+                        <span class="text-xs font-semibold text-blue-500">09:55–10:40 <span class="font-normal text-blue-300">(45분)</span></span>
+                    </div>
+                    <div class="bg-white divide-y divide-gray-100">
+                        <div class="flex items-center gap-4 px-5 py-3">
+                            <div class="text-center shrink-0 w-16">
+                                <div class="text-xs font-bold text-gray-600">09:55</div>
+                                <div class="text-xs text-gray-400">~10:20</div>
+                            </div>
+                            <div class="flex-1">
+                                <p class="font-semibold text-gray-800 text-sm">Copilot 사용법 &amp; 프롬프트 4요소</p>
+                                <p class="text-xs text-gray-400">3단계 시작법, NG/OK 비교, 대화로 다듬기, 환각 주의</p>
+                            </div>
+                            <span class="bg-blue-100 text-blue-700 text-xs font-bold px-2 py-0.5 rounded-full shrink-0">03</span>
+                        </div>
+                        <div class="flex items-center gap-4 px-5 py-3">
+                            <div class="text-center shrink-0 w-16">
+                                <div class="text-xs font-bold text-gray-600">10:20</div>
+                                <div class="text-xs text-gray-400">~10:40</div>
+                            </div>
+                            <div class="flex-1">
+                                <p class="font-semibold text-gray-800 text-sm">핵심 기능 도감 &amp; 3대 접속 공식</p>
+                                <p class="text-xs text-gray-400">문서·PDF 요약/초안/실시간 검색, Teams·아웃룩·Copilot Web 접속법</p>
+                            </div>
+                            <span class="bg-blue-100 text-blue-700 text-xs font-bold px-2 py-0.5 rounded-full shrink-0">04·05</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 쉬는 시간 -->
+                <div class="flex items-center justify-center gap-3 bg-amber-50 border border-amber-200 rounded-2xl py-4">
+                    <i class="fa-solid fa-mug-hot text-amber-500"></i>
+                    <span class="font-bold text-amber-800 text-sm">쉬는 시간</span>
+                    <span class="text-xs text-amber-600 font-semibold bg-amber-100 px-2 py-0.5 rounded-full">10:40–10:55</span>
+                    <span class="text-xs text-amber-400">(15분)</span>
+                </div>
+
+                <!-- 3교시 -->
+                <div class="rounded-2xl border border-gray-200 shadow-sm overflow-hidden">
+                    <div class="flex items-center justify-between px-5 py-3 bg-red-50 border-b border-red-100">
+                        <div class="flex items-center gap-2">
+                            <span class="bg-[#C10933] text-white text-xs font-bold px-3 py-0.5 rounded-full font-outfit">3교시</span>
+                            <span class="font-bold text-gray-800 text-sm">실무 적용 실습 <span class="text-[#C10933]">· A to Z</span></span>
+                        </div>
+                        <span class="text-xs font-semibold text-[#C10933]">10:55–11:55 <span class="font-normal opacity-60">(60분)</span></span>
+                    </div>
+                    <div class="bg-white divide-y divide-gray-100">
+                        <div class="flex items-center gap-4 px-5 py-3">
+                            <div class="text-center shrink-0 w-16">
+                                <div class="text-xs font-bold text-gray-600">10:55</div>
+                                <div class="text-xs text-gray-400">~11:10</div>
+                            </div>
+                            <div class="flex-1">
+                                <p class="font-semibold text-gray-800 text-sm">실습 ① PDF·웹 문서 요약</p>
+                                <p class="text-xs text-gray-400">아침에 받은 영문 보고서 PDF를 3분 만에 한글 요약</p>
+                            </div>
+                            <span class="bg-red-100 text-[#C10933] text-xs font-bold px-2 py-0.5 rounded-full shrink-0">06</span>
+                        </div>
+                        <div class="flex items-center gap-4 px-5 py-3">
+                            <div class="text-center shrink-0 w-16">
+                                <div class="text-xs font-bold text-gray-600">11:10</div>
+                                <div class="text-xs text-gray-400">~11:30</div>
+                            </div>
+                            <div class="flex-1">
+                                <p class="font-semibold text-gray-800 text-sm">실습 ② 아웃룩 이메일 회신 작성</p>
+                                <p class="text-xs text-gray-400">정선영 선임 메일에 회신 → Copilot(Claude)로 회신 초안 작성 (한글·영문)</p>
+                            </div>
+                            <span class="bg-red-100 text-[#C10933] text-xs font-bold px-2 py-0.5 rounded-full shrink-0">07</span>
+                        </div>
+                        <div class="flex items-center gap-4 px-5 py-3">
+                            <div class="text-center shrink-0 w-16">
+                                <div class="text-xs font-bold text-gray-600">11:30</div>
+                                <div class="text-xs text-gray-400">~11:45</div>
+                            </div>
+                            <div class="flex-1">
+                                <p class="font-semibold text-gray-800 text-sm">실습 ③ 주간보고 요약자료</p>
+                                <p class="text-xs text-gray-400">팀별 원문 → 표준 양식 A4 한 장으로 자동 조립</p>
+                            </div>
+                            <span class="bg-red-100 text-[#C10933] text-xs font-bold px-2 py-0.5 rounded-full shrink-0">08</span>
+                        </div>
+                        <div class="flex items-center gap-4 px-5 py-3">
+                            <div class="text-center shrink-0 w-16">
+                                <div class="text-xs font-bold text-gray-600">11:45</div>
+                                <div class="text-xs text-gray-400">~11:55</div>
+                            </div>
+                            <div class="flex-1">
+                                <p class="font-semibold text-gray-800 text-sm">프롬프트 빌더 직접 써보기</p>
+                                <p class="text-xs text-gray-400">실행경로·상황·어조 선택 → 내 업무용 프롬프트 즉시 완성</p>
+                            </div>
+                            <span class="bg-emerald-100 text-emerald-700 text-xs font-bold px-2 py-0.5 rounded-full shrink-0">09</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 마무리 -->
+                <div class="rounded-2xl border border-gray-200 shadow-sm overflow-hidden">
+                    <div class="flex items-center justify-between px-5 py-3 bg-gray-100 border-b border-gray-200">
+                        <div class="flex items-center gap-2">
+                            <span class="bg-gray-500 text-white text-xs font-bold px-3 py-0.5 rounded-full font-outfit">마무리</span>
+                            <span class="font-bold text-gray-800 text-sm">정리 &amp; 질의응답</span>
+                        </div>
+                        <span class="text-xs font-semibold text-gray-500">11:55–12:00 <span class="font-normal text-gray-400">(5분)</span></span>
+                    </div>
+                    <div class="bg-white">
+                        <div class="flex items-center gap-4 px-5 py-3">
+                            <div class="text-center shrink-0 w-16">
+                                <div class="text-xs font-bold text-gray-600">11:55</div>
+                                <div class="text-xs text-gray-400">~12:00</div>
+                            </div>
+                            <div class="flex-1">
+                                <p class="font-semibold text-gray-800 text-sm">핵심 정리 &amp; Q&amp;A</p>
+                                <p class="text-xs text-gray-400">AI 이론·실무 공식·보안 수칙 총정리, 자리에서 바로 해볼 한 가지</p>
+                            </div>
+                            <span class="bg-gray-100 text-gray-600 text-xs font-bold px-2 py-0.5 rounded-full shrink-0">10</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- 02. AI 모델 & AI 에이전트 이론 -->
+        <section id="ai-theory" class="content-section">
+            <h2 class="section-header">02. AI 모델 &amp; AI 에이전트란 무엇인가?</h2>
+            <p class="text-gray-600 text-lg mb-8">
+                Copilot을 효과적으로 활용하려면, 그 뒤에서 작동하는 AI의 기본 개념을 이해하는 것이 중요합니다.<br>
+                복잡한 수식이나 코드를 몰라도 됩니다. <strong>AI가 어떻게 생각하고 행동하는지</strong>에 대한 직관적인 이해만으로 충분합니다.
+            </p>
+
+            <!-- 왜 지금 AI인가 — 동기부여 -->
+            <div class="mb-10">
+                <h3 class="font-bold text-xl text-gray-800 mb-5 flex items-center gap-3">
+                    <span
+                        class="w-9 h-9 bg-[#C10933] text-white rounded-full flex items-center justify-center font-bold text-base">0</span>
+                    왜 지금, 우리가 AI를 배워야 할까요?
+                </h3>
+
+                <div class="bg-gradient-to-r from-[#C10933] to-[#A00728] rounded-2xl p-7 text-white mb-6">
+                    <p class="text-lg font-bold mb-2">"같은 도구를 쥐어도, <span class="text-yellow-200">쓸 줄 아는 사람과 모르는 사람의 결과물은 완전히 다릅니다."</span></p>
+                    <p class="text-sm text-white/85 leading-relaxed">
+                        기술 자체보다 중요한 것은 <strong>활용 격차</strong>입니다. 누구에게나 열려 있는 도구지만,
+                        쓰는 사람에 따라 결과물의 속도와 품질이 크게 달라집니다.
+                        오늘 교육의 목표는 거창한 자동화가 아니라, <strong>여러분이 내일 아침 업무에서 바로 한 가지를 적용</strong>하는 것입니다.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-5 mb-2">
+                    <div class="bg-white border border-gray-200 rounded-2xl p-5 shadow-sm">
+                        <div class="flex items-center gap-3 mb-3">
+                            <i class="fa-solid fa-hourglass-half text-2xl text-[#C10933]"></i>
+                            <h4 class="font-bold text-gray-800 text-sm">반복 업무의 무게</h4>
+                        </div>
+                        <p class="text-xs text-gray-600 leading-relaxed">
+                            메일 작성, 자료 요약, 보고서 취합, 번역 — 우리 업무의 상당 부분은 <strong>매번 비슷하게 반복</strong>됩니다.
+                            바로 이 영역이 AI가 가장 큰 시간을 돌려주는 지점입니다.
+                        </p>
+                    </div>
+                    <div class="bg-white border border-gray-200 rounded-2xl p-5 shadow-sm">
+                        <div class="flex items-center gap-3 mb-3">
+                            <i class="fa-solid fa-people-arrows text-2xl text-blue-500"></i>
+                            <h4 class="font-bold text-gray-800 text-sm">격차는 '쓰는 사람'에게서</h4>
+                        </div>
+                        <p class="text-xs text-gray-600 leading-relaxed">
+                            AI는 이미 모두에게 열려 있습니다. 차이를 만드는 것은 도구의 유무가 아니라
+                            <strong>"어떤 일에, 어떻게 시키는가"</strong>를 아는 사람과 모르는 사람의 차이입니다.
+                        </p>
+                    </div>
+                    <div class="bg-white border border-gray-200 rounded-2xl p-5 shadow-sm">
+                        <div class="flex items-center gap-3 mb-3">
+                            <i class="fa-solid fa-shoe-prints text-2xl text-emerald-500"></i>
+                            <h4 class="font-bold text-gray-800 text-sm">작은 한 걸음부터</h4>
+                        </div>
+                        <p class="text-xs text-gray-600 leading-relaxed">
+                            전사 시스템을 바꾸자는 이야기가 아닙니다. <strong>오늘 받은 메일 한 통 요약하기, 회신 초안 한 줄 만들기</strong>
+                            — 이 작은 성공 경험이 AX의 진짜 출발점입니다.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- AI 모델이란? -->
+            <div class="mb-10">
+                <h3 class="font-bold text-xl text-gray-800 mb-5 flex items-center gap-3">
+                    <span
+                        class="w-9 h-9 bg-[#C10933] text-white rounded-full flex items-center justify-center font-bold text-base">1</span>
+                    AI 모델이란 무엇인가?
+                </h3>
+
+                <!-- LLM 작동 원리 — 인터랙티브 위젯 -->
+                <div class="mb-6 bg-white border border-purple-200 rounded-2xl p-5 overflow-hidden">
+                    <p class="text-xs font-bold text-purple-600 mb-4 uppercase tracking-wide">시각화 — LLM은 어떻게 다음 단어를 고르는가?</p>
+                    <style>
+                    @keyframes llmFadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+                    @keyframes llmPulse{0%,100%{box-shadow:0 0 0 0 rgba(83,74,183,.28)}50%{box-shadow:0 0 0 6px rgba(83,74,183,0)}}
+                    @keyframes llmBar{from{width:0}}
+                    .llm-token{display:inline-flex;align-items:center;justify-content:center;min-width:52px;height:36px;border-radius:8px;font-size:13px;font-weight:500;border:1px solid #D3D1C7;background:#F1EFE8;color:#888780;transition:all .3s ease;}
+                    .llm-token.active{background:#EEEDFE;color:#26215C;border-color:#7F77DD;animation:llmPulse 1.1s ease infinite;}
+                    .llm-token.done{background:#F1EFE8;color:#444441;border-color:#D3D1C7;}
+                    .llm-layer{display:flex;align-items:center;gap:10px;padding:9px 14px;border-radius:9px;border:1px solid transparent;opacity:0;transform:translateY(5px);transition:opacity .4s ease,transform .4s ease;}
+                    .llm-layer.vis{opacity:1;transform:translateY(0);border-color:#EEEDFEaa;background:rgba(238,237,254,.35);}
+                    .llm-result{opacity:0;transform:translateX(-4px);transition:opacity .5s ease,transform .5s ease;}
+                    .llm-result.vis{opacity:1;transform:translateX(0);}
+                    .llm-bar{height:26px;border-radius:6px;display:flex;align-items:center;padding:0 10px;font-size:12px;font-weight:500;animation:llmBar .55s cubic-bezier(.34,1.2,.64,1) both;}
+                    .llm-chip{display:flex;align-items:flex-start;gap:8px;background:#F8F7FF;border:1px solid #CECBF6;border-radius:9px;padding:9px 12px;font-size:11px;flex:1;min-width:150px;}
+                    .llm-play{display:inline-flex;align-items:center;gap:6px;padding:7px 16px;border-radius:8px;font-size:12px;font-weight:600;background:#534AB7;color:#fff;border:none;cursor:pointer;transition:background .2s,transform .1s;}
+                    .llm-play:hover{background:#3C3489;}
+                    .llm-play:active{transform:scale(.97);}
+                    .llm-play:disabled{opacity:.5;cursor:default;}
+                    .llm-reset{display:none;align-items:center;gap:6px;padding:7px 12px;border-radius:8px;font-size:12px;background:transparent;color:#534AB7;border:1px solid #CECBF6;cursor:pointer;transition:background .2s;}
+                    .llm-reset:hover{background:#EEEDFE;}
+                    .llm-steplabel{font-size:10px;font-weight:600;letter-spacing:.07em;text-transform:uppercase;color:#888780;margin-bottom:4px;}
+                    </style>
+
+                    <div style="display:flex;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;gap:10px;margin-bottom:16px;">
+                        <div style="flex:1;min-width:180px;">
+                            <div class="llm-steplabel" id="ls-label">준비</div>
+                            <div id="ls-desc" style="font-size:13px;color:#1F1F1F;font-weight:500;min-height:18px;">버튼을 눌러 AI가 다음 단어를 고르는 과정을 단계별로 확인해 보세요.</div>
+                        </div>
+                        <div style="display:flex;gap:7px;align-items:center;">
+                            <button class="llm-reset" id="ls-reset" onclick="llmReset()">↺ 다시 보기</button>
+                            <button class="llm-play" id="ls-play" onclick="llmNext()">▶ 시작</button>
+                        </div>
+                    </div>
+
+                    <div style="margin-bottom:14px;">
+                        <div class="llm-steplabel" style="margin-bottom:7px;">① 입력 — 문장을 단어 조각(토큰)으로 나눕니다</div>
+                        <div style="display:flex;flex-wrap:wrap;gap:7px;align-items:center;">
+                            <span class="llm-token" id="lt0">나는</span>
+                            <span class="llm-token" id="lt1">오늘</span>
+                            <span class="llm-token" id="lt2">아침에</span>
+                            <span class="llm-token" id="lt3">커피를</span>
+                            <span class="llm-token" id="lt4">마셨다.</span>
+                            <span style="color:#B4B2A9;font-size:16px;margin:0 2px;">→</span>
+                            <span class="llm-token" id="lt5" style="background:#E1F5EE;color:#085041;border-color:#5DCAA5;font-size:17px;">?</span>
+                        </div>
+                        <div style="font-size:11px;color:#888780;margin-top:7px;">"마셨다." 뒤에는 어떤 말이 올까요? — 문장이 끝났으니 <strong style="color:#5F5E5A;">다음 문장의 첫 단어</strong>를 예측합니다.</div>
+                    </div>
+
+                    <div style="margin-bottom:14px;border-radius:10px;border:1px solid #CECBF6;overflow:hidden;">
+                        <div style="background:#EEEDFE;padding:8px 14px;font-size:11px;font-weight:600;color:#3C3489;letter-spacing:.03em;">② 판단 회로 — 수십억 문장을 학습한 단계별 처리</div>
+                        <div style="padding:4px 0;background:#fff;">
+                            <div class="llm-layer" id="ll0">
+                                <div style="width:7px;height:7px;border-radius:50%;background:#7F77DD;flex-shrink:0;"></div>
+                                <div style="flex:1;font-size:12px;"><strong style="color:#1F1F1F;">단계 1</strong> <span style="color:#5F5E5A;">— 단어 사이 관계 파악 (문법·의미)</span></div>
+                                <span style="font-size:10px;color:#7F77DD;" id="ll0s"></span>
+                            </div>
+                            <div class="llm-layer" id="ll1">
+                                <div style="width:7px;height:7px;border-radius:50%;background:#534AB7;flex-shrink:0;"></div>
+                                <div style="flex:1;font-size:12px;"><strong style="color:#1F1F1F;">단계 2</strong> <span style="color:#5F5E5A;">— 문장 흐름과 맥락 이해</span></div>
+                                <span style="font-size:10px;color:#534AB7;" id="ll1s"></span>
+                            </div>
+                            <div class="llm-layer" id="ll2">
+                                <div style="width:7px;height:7px;border-radius:50%;background:#3C3489;flex-shrink:0;"></div>
+                                <div style="flex:1;font-size:12px;"><strong style="color:#1F1F1F;">단계 N</strong> <span style="color:#5F5E5A;">— 최종 다음 단어 확률 계산</span></div>
+                                <span style="font-size:10px;color:#3C3489;" id="ll2s"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div style="margin-bottom:16px;">
+                        <div class="llm-steplabel" style="margin-bottom:9px;">③ 출력 — 다음 단어 후보 (확률 순)</div>
+                        <div style="display:flex;flex-direction:column;gap:6px;">
+                            <div class="llm-result" id="lr0"><div style="display:flex;align-items:center;gap:9px;"><span style="font-size:11px;color:#888780;width:30px;text-align:right;">72%</span><div class="llm-bar" style="width:72%;background:#EEEDFE;color:#26215C;">그리고</div></div></div>
+                            <div class="llm-result" id="lr1"><div style="display:flex;align-items:center;gap:9px;"><span style="font-size:11px;color:#888780;width:30px;text-align:right;">16%</span><div class="llm-bar" style="width:16%;background:#F1EFE8;color:#5F5E5A;">그런데</div></div></div>
+                            <div class="llm-result" id="lr2"><div style="display:flex;align-items:center;gap:9px;"><span style="font-size:11px;color:#888780;width:30px;text-align:right;">7%</span><div class="llm-bar" style="width:7%;background:#F1EFE8;color:#888780;">그래서</div></div></div>
+                            <div class="llm-result" id="lr3"><div style="display:flex;align-items:center;gap:9px;"><span style="font-size:11px;color:#888780;width:30px;text-align:right;">5%</span><div class="llm-bar" style="width:5%;background:#F1EFE8;color:#B4B2A9;">…기타</div></div></div>
+                        </div>
+                        <div id="ls-note" style="display:none;margin-top:10px;font-size:12px;color:#5F5E5A;background:#F8F7FF;border:1px solid #CECBF6;border-radius:8px;padding:10px 13px;line-height:1.75;animation:llmFadeIn .5s ease both;">AI는 '정답을 기억'한 게 아닙니다. 수십억 개 문장 패턴에서 <strong style="color:#1F1F1F;">"마셨다. 다음에는 '그리고'가 가장 자연스럽다"</strong>는 감각을 익힌 것입니다.</div>
+                    </div>
+
+                    <div style="display:flex;flex-wrap:wrap;gap:8px;">
+                        <div class="llm-chip"><span style="font-weight:600;color:#534AB7;white-space:nowrap;margin-top:1px;">토큰</span><span style="color:#5F5E5A;">AI가 글을 읽는 최소 단위. "커피를"이 "커피"+"를" 두 조각으로 나뉠 수 있어요.</span></div>
+                        <div class="llm-chip"><span style="font-weight:600;color:#534AB7;white-space:nowrap;margin-top:1px;">레이어</span><span style="color:#5F5E5A;">재료 손질→볶기→간 맞추기처럼 여러 단계를 거치며 점점 정교해지는 판단 과정.</span></div>
+                        <div class="llm-chip"><span style="font-weight:600;color:#534AB7;white-space:nowrap;margin-top:1px;">파라미터</span><span style="color:#5F5E5A;">수십억 곡 듣고 음감을 키운 것처럼, 학습으로 쌓인 AI의 언어 감각 수치.</span></div>
+                    </div>
+
+                    <script>
+                    (function(){
+                    var lstep=0, ltimers=[];
+                    var ldescs=[
+                        {lb:'단계 1 / 4',d:'입력 문장의 각 단어를 하나씩 읽어 들입니다.'},
+                        {lb:'단계 2 / 4',d:'단계별 판단 회로를 통과하며 다음 단어 후보를 계산합니다.'},
+                        {lb:'단계 3 / 4',d:'가장 자연스러운 단어 순서로 결과가 나왔습니다.'},
+                        {lb:'완료',d:'AI가 "그리고"를 다음 단어로 선택했습니다. 이 과정이 매 단어마다 반복됩니다.'}
+                    ];
+                    function ld(id){return document.getElementById(id);}
+                    function ld_(fn,ms){var i=setTimeout(fn,ms);ltimers.push(i);}
+                    window.llmNext=function(){
+                        if(lstep===0)ld('ls-play').textContent='▶ 다음';
+                        if(lstep<ldescs.length){ld('ls-label').textContent=ldescs[lstep].lb;ld('ls-desc').textContent=ldescs[lstep].d;}
+                        if(lstep===0){
+                            ['lt0','lt1','lt2','lt3','lt4'].forEach(function(id,i){
+                                ld_(function(){ld(id).classList.add('active');},i*160);
+                                ld_(function(){ld(id).classList.remove('active');ld(id).classList.add('done');},i*160+480);
+                            });
+                        } else if(lstep===1){
+                            ld('ls-play').disabled=true;
+                            ['ll0','ll1','ll2'].forEach(function(id,i){ld_(function(){ld(id).classList.add('vis');},i*300);});
+                            ld_(function(){ld('ll0s').textContent='완료';ld('ll1s').textContent='완료';ld('ll2s').textContent='완료';ld('ls-play').disabled=false;},1100);
+                        } else if(lstep===2){
+                            ld('ls-play').disabled=true;
+                            ['lr0','lr1','lr2','lr3'].forEach(function(id,i){ld_(function(){ld(id).classList.add('vis');},i*170);});
+                            ld_(function(){var t=ld('lt5');t.textContent='그리고';t.style.background='#EEEDFE';t.style.color='#3C3489';t.style.borderColor='#7F77DD';t.style.fontSize='13px';ld('ls-play').disabled=false;},850);
+                        } else if(lstep===3){
+                            ld('ls-note').style.display='block';
+                            ld('ls-play').style.display='none';
+                            var r=ld('ls-reset');r.style.display='inline-flex';
+                        }
+                        lstep++;
+                    };
+                    window.llmReset=function(){
+                        ltimers.forEach(clearTimeout);ltimers=[];lstep=0;
+                        ['lt0','lt1','lt2','lt3','lt4'].forEach(function(id){ld(id).className='llm-token';});
+                        var t=ld('lt5');t.textContent='?';t.style.cssText='background:#E1F5EE;color:#085041;border-color:#5DCAA5;font-size:17px;';
+                        ['ll0','ll1','ll2'].forEach(function(id){ld(id).classList.remove('vis');ld(id).style.background='';});
+                        ['ll0s','ll1s','ll2s'].forEach(function(id){ld(id).textContent='';});
+                        ['lr0','lr1','lr2','lr3'].forEach(function(id){ld(id).classList.remove('vis');});
+                        ld('ls-note').style.display='none';
+                        ld('ls-label').textContent='준비';
+                        ld('ls-desc').textContent='버튼을 눌러 AI가 다음 단어를 고르는 과정을 단계별로 확인해 보세요.';
+                        var p=ld('ls-play');p.style.display='inline-flex';p.disabled=false;p.textContent='▶ 시작';
+                        ld('ls-reset').style.display='none';
+                    };
+                    })();
+                    </script>
+                </div>
+
+                <!-- 오타 이해 설명 -->
+                <div class="mb-6 rounded-2xl border border-emerald-200 overflow-hidden">
+                    <div class="bg-emerald-50 px-5 py-3 flex items-center gap-2 border-b border-emerald-100">
+                        <i class="fa-solid fa-keyboard text-emerald-600 text-sm"></i>
+                        <span class="text-sm font-bold text-emerald-800">오타가 있어도 괜찮습니다 — AI는 의도를 이해합니다</span>
+                    </div>
+                    <div class="bg-white px-5 py-4">
+                        <p class="text-sm text-gray-600 leading-relaxed mb-4">
+                            초창기 언어 모델은 <strong>"커퍼"</strong> 같은 오타를 마주치면 학습 데이터에 없는 단어라 인식하지 못했습니다.
+                            그런데 현재의 AI는 <strong>오타 자체도 함께 학습</strong>했고, 앞뒤 문맥으로 의미를 파악하기 때문에
+                            오타가 섞인 문장도 자연스럽게 이해합니다.
+                        </p>
+
+                        <!-- Before / After 비교 -->
+                        <div class="grid md:grid-cols-2 gap-4 mb-4">
+                            <div class="rounded-xl border border-gray-200 overflow-hidden">
+                                <div class="bg-gray-100 px-4 py-2 text-xs font-bold text-gray-500 flex items-center gap-1.5">
+                                    <i class="fa-solid fa-clock-rotate-left text-gray-400"></i> 초창기 언어 모델
+                                </div>
+                                <div class="px-4 py-3 space-y-2">
+                                    <div class="bg-gray-50 rounded-lg px-3 py-2 font-mono text-xs text-gray-700">"오늘 <span class="bg-red-100 text-red-600 px-1 rounded">커퍼를</span> 마셧다"</div>
+                                    <div class="flex items-start gap-2 text-xs text-gray-500">
+                                        <i class="fa-solid fa-circle-xmark text-red-400 mt-0.5 shrink-0"></i>
+                                        <span>"커퍼"? 이런 단어는 없음. 인식 실패.</span>
+                                    </div>
+                                    <div class="flex items-start gap-2 text-xs text-gray-500">
+                                        <i class="fa-solid fa-circle-xmark text-red-400 mt-0.5 shrink-0"></i>
+                                        <span>문맥 이해 없이 단어 단위로만 처리 → 오류</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="rounded-xl border border-emerald-200 overflow-hidden">
+                                <div class="bg-emerald-50 px-4 py-2 text-xs font-bold text-emerald-700 flex items-center gap-1.5">
+                                    <i class="fa-solid fa-bolt text-emerald-500"></i> 지금의 AI (GPT·Claude 등)
+                                </div>
+                                <div class="px-4 py-3 space-y-2">
+                                    <div class="bg-emerald-50 rounded-lg px-3 py-2 font-mono text-xs text-gray-700">"오늘 <span class="bg-emerald-100 text-emerald-700 px-1 rounded">커퍼를</span> 마셧다"</div>
+                                    <div class="flex items-start gap-2 text-xs text-gray-600">
+                                        <i class="fa-solid fa-circle-check text-emerald-500 mt-0.5 shrink-0"></i>
+                                        <span>"커퍼" ≈ "커피" — 오타 패턴 학습으로 인식</span>
+                                    </div>
+                                    <div class="flex items-start gap-2 text-xs text-gray-600">
+                                        <i class="fa-solid fa-circle-check text-emerald-500 mt-0.5 shrink-0"></i>
+                                        <span>앞뒤 문맥으로 "커피를 마셨다"는 의미 파악 완료</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 실무 팁 -->
+                        <div class="bg-amber-50 border border-amber-200 rounded-xl px-4 py-3 flex items-start gap-3">
+                            <i class="fa-solid fa-lightbulb text-amber-500 mt-0.5 shrink-0"></i>
+                            <div>
+                                <p class="text-xs font-bold text-amber-800 mb-1">실무 팁 — 오타 수정에 시간 낭비하지 마세요</p>
+                                <p class="text-xs text-amber-700 leading-relaxed">
+                                    Copilot에 보내는 프롬프트에 오타가 있어도 <strong>의미 전달에는 문제가 없습니다.</strong>
+                                    "주간보고 초안 써줘" 대신 "주간보오 초안 써줘"라고 입력해도 AI는 맥락을 읽고 주간보고를 작성해 줍니다.
+                                    철자를 꼼꼼히 교정하는 시간보다 <strong>원하는 것을 명확하게 전달하는 데 집중</strong>하는 편이 훨씬 효율적입니다.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                                <div class="grid md:grid-cols-2 gap-6 mb-6">
+                    <div class="bg-white border border-gray-200 rounded-2xl p-6 shadow-sm">
+                        <div class="flex items-center gap-3 mb-4">
+                            <i class="fa-solid fa-microchip text-2xl text-[#C10933]"></i>
+                            <h4 class="font-bold text-gray-800">한 줄 정의</h4>
+                        </div>
+                        <p class="text-sm text-gray-600 leading-relaxed mb-4">
+                            AI 모델은 <strong>방대한 텍스트 데이터를 학습하여 언어를 이해하고 생성할 수 있도록 훈련된 수학적 시스템</strong>입니다.
+                            이런 종류의 모델을 흔히 <span class="term" tabindex="0">LLM(거대 언어 모델)<span class="term-def"><strong>LLM (Large Language Model)</strong><br>엄청난 양의 글을 학습해 사람처럼 문장을 이해하고 만들어내는 AI. GPT·Claude·Gemini가 모두 LLM입니다.</span></span>이라고 부릅니다.<br><br>
+                            사람으로 비유하자면, 수천만 권의 책을 읽고 그 지식을 기반으로 대화하는 <strong>초고속 두뇌</strong>와 같습니다.
+                        </p>
+                        <div class="bg-red-50 rounded-xl p-4 text-xs text-gray-700 space-y-2">
+                            <p class="font-bold text-[#C10933] mb-2">📌 대표적인 AI 모델들</p>
+                            <div class="flex items-start gap-2"><span
+                                    class="font-bold text-gray-500 w-16 shrink-0">GPT-4o</span><span>OpenAI가 개발.
+                                    ChatGPT의 기반 모델. 빠른 응답과 높은 범용성.</span></div>
+                            <div class="flex items-start gap-2"><span
+                                    class="font-bold text-gray-500 w-16 shrink-0">Claude</span><span>Anthropic이 개발. 긴 문서
+                                    처리·자연스러운 글쓰기에 특화.</span></div>
+                            <div class="flex items-start gap-2"><span
+                                    class="font-bold text-gray-500 w-16 shrink-0">Gemini</span><span>Google이 개발. 검색·이미지
+                                    분석 등 <span class="term" tabindex="0">멀티모달<span class="term-def"><strong>멀티모달 (Multimodal)</strong><br>글뿐 아니라 이미지·음성·표 등 여러 형태의 정보를 함께 이해하고 처리하는 능력을 말합니다.</span></span> 강점.</span></div>
+                        </div>
+                    </div>
+                    <div class="bg-white border border-gray-200 rounded-2xl p-6 shadow-sm">
+                        <div class="flex items-center gap-3 mb-4">
+                            <i class="fa-solid fa-scale-balanced text-2xl text-blue-500"></i>
+                            <h4 class="font-bold text-gray-800">ChatGPT vs Copilot — 핵심 차이</h4>
+                        </div>
+                        <p class="text-sm text-gray-600 leading-relaxed mb-4">
+                            ChatGPT는 OpenAI가 <strong>자체 개발한 GPT 모델만을 사용</strong>하는 서비스입니다.<br><br>
+                            반면 <strong>Microsoft Copilot은 특정 AI 모델에 종속되지 않습니다.</strong> Copilot은 GPT, Claude 등 다양한 최첨단
+                            AI 모델을 <strong>상황에 맞게 선택하여 활용할 수 있는 플랫폼</strong>입니다.
+                        </p>
+                        <div class="bg-blue-50 border border-blue-200 rounded-xl p-4 text-xs">
+                            <p class="font-bold text-blue-800 mb-2">💡 쉬운 비유</p>
+                            <p class="text-gray-700">ChatGPT = 특정 브랜드의 커피만 파는 카페<br>Copilot = 다양한 브랜드의 최고급 원두를 선택해서 내려주는
+                                카페</p>
+                        </div>
+                        <div class="mt-4 bg-amber-50 border border-amber-200 rounded-xl p-3 text-xs text-amber-800">
+                            <strong>아웃룩 Copilot에서 Claude 선택 가능!</strong><br>
+                            현재 아웃룩 코파일럿에서는 좌측 상단 '자동' 버튼을 통해 <strong>GPT 또는 Claude 모델을 직접 선택</strong>할 수 있습니다.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+                <!-- ChatGPT vs Copilot 구조 비교 시각화 -->
+                <div class="mt-4 bg-gray-50 border border-gray-200 rounded-2xl p-4 overflow-x-auto">
+                    <p class="text-xs font-bold text-gray-500 mb-3 uppercase tracking-wide">시각화 — ChatGPT vs Copilot 구조 비교</p>
+                    <svg width="100%" viewBox="0 0 680 300" role="img" style="min-width:500px;">
+                    <title>ChatGPT vs Copilot</title><desc>ChatGPT는 GPT 단일 모델, Copilot은 GPT·Claude 등을 선택하는 플랫폼</desc>
+                    <defs><marker id="a2" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></marker></defs>
+                    <!-- LEFT ChatGPT -->
+                    <rect x="30" y="24" width="268" height="252" rx="14" fill="#FAECE7" stroke="#993C1D" stroke-width="0.5"/>
+                    <text text-anchor="middle" x="164" y="52" font-weight="600" style="font-size:14px;fill:#4A1B0C;">ChatGPT</text>
+                    <text text-anchor="middle" x="164" y="70" style="font-size:11px;fill:#D85A30;">단일 모델 서비스</text>
+                    <rect x="98" y="88" width="132" height="34" rx="6" fill="#D3D1C7" stroke="#888780" stroke-width="0.5"/>
+                    <text text-anchor="middle" dominant-baseline="central" x="164" y="105" style="font-size:11px;fill:#2C2C2A;">사용자 입력</text>
+                    <line x1="164" y1="122" x2="164" y2="142" stroke="#888780" stroke-width="1.2" marker-end="url(#a2)"/>
+                    <rect x="72" y="142" width="184" height="42" rx="8" fill="#F0997B" stroke="#993C1D" stroke-width="1"/>
+                    <text text-anchor="middle" x="164" y="159" font-weight="600" style="font-size:12px;fill:#4A1B0C;">GPT 전용 엔진</text>
+                    <text text-anchor="middle" x="164" y="174" style="font-size:10px;fill:#712B13;">항상 GPT만 사용 (교체 불가)</text>
+                    <line x1="164" y1="184" x2="164" y2="204" stroke="#888780" stroke-width="1.2" marker-end="url(#a2)"/>
+                    <rect x="98" y="204" width="132" height="34" rx="6" fill="#D3D1C7" stroke="#888780" stroke-width="0.5"/>
+                    <text text-anchor="middle" dominant-baseline="central" x="164" y="221" style="font-size:11px;fill:#2C2C2A;">답변 출력</text>
+                    <text text-anchor="middle" x="164" y="258" style="font-size:11px;fill:#993C1D;font-weight:600;">🔒 모델 교체 불가</text>
+                    <!-- RIGHT Copilot -->
+                    <rect x="382" y="24" width="268" height="252" rx="14" fill="#E1F5EE" stroke="#0F6E56" stroke-width="0.5"/>
+                    <text text-anchor="middle" x="516" y="52" font-weight="600" style="font-size:14px;fill:#04342C;">Microsoft Copilot</text>
+                    <text text-anchor="middle" x="516" y="70" style="font-size:11px;fill:#1D9E75;">AI 선택 플랫폼</text>
+                    <rect x="452" y="88" width="128" height="34" rx="6" fill="#D3D1C7" stroke="#888780" stroke-width="0.5"/>
+                    <text text-anchor="middle" dominant-baseline="central" x="516" y="105" style="font-size:11px;fill:#2C2C2A;">사용자 입력</text>
+                    <line x1="516" y1="122" x2="516" y2="142" stroke="#888780" stroke-width="1.2" marker-end="url(#a2)"/>
+                    <rect x="424" y="142" width="184" height="42" rx="8" fill="#5DCAA5" stroke="#0F6E56" stroke-width="1"/>
+                    <text text-anchor="middle" x="516" y="159" font-weight="600" style="font-size:12px;fill:#04342C;">Copilot 플랫폼</text>
+                    <text text-anchor="middle" x="516" y="174" style="font-size:10px;fill:#085041;">최적 모델 선택·연결</text>
+                    <line x1="472" y1="184" x2="446" y2="204" stroke="#888780" stroke-width="1.2" marker-end="url(#a2)"/>
+                    <line x1="516" y1="184" x2="516" y2="204" stroke="#888780" stroke-width="1.2" marker-end="url(#a2)"/>
+                    <line x1="560" y1="184" x2="588" y2="204" stroke="#888780" stroke-width="1.2" marker-end="url(#a2)"/>
+                    <rect x="394" y="204" width="76" height="28" rx="6" fill="#B5D4F4" stroke="#185FA5" stroke-width="0.5"/>
+                    <text text-anchor="middle" dominant-baseline="central" x="432" y="218" style="font-size:11px;fill:#0C447C;">GPT-4o</text>
+                    <rect x="480" y="204" width="72" height="28" rx="6" fill="#CECBF6" stroke="#534AB7" stroke-width="1"/>
+                    <text text-anchor="middle" dominant-baseline="central" x="516" y="218" font-weight="600" style="font-size:11px;fill:#26215C;">Claude</text>
+                    <rect x="562" y="204" width="72" height="28" rx="6" fill="#D3D1C7" stroke="#888780" stroke-width="0.5"/>
+                    <text text-anchor="middle" dominant-baseline="central" x="598" y="218" style="font-size:11px;fill:#444441;">기타 …</text>
+                    <text text-anchor="middle" x="516" y="258" style="font-size:11px;fill:#0F6E56;font-weight:600;">✓ 상황에 맞게 모델 선택 가능</text>
+                    <!-- VS -->
+                    <text text-anchor="middle" dominant-baseline="central" x="340" y="155" font-weight="700" style="font-size:16px;fill:#888780;">VS</text>
+                    </svg>
+                </div>
+
+            <!-- AI 에이전트란? -->
+            <div class="mb-10">
+                <h3 class="font-bold text-xl text-gray-800 mb-5 flex items-center gap-3">
+                    <span
+                        class="w-9 h-9 bg-[#C10933] text-white rounded-full flex items-center justify-center font-bold text-base">2</span>
+                    AI 에이전트(Agent)란 무엇인가?
+                </h3>
+                <div class="info-box mb-6">
+                    <p class="font-bold text-[#C10933] mb-2 text-base">AI 에이전트 = 스스로 판단하고 행동하는 AI</p>
+                    <p class="text-sm text-gray-700 leading-relaxed">
+                        기존 AI 모델은 질문에 <strong>답변만 했습니다.</strong> AI 에이전트는 한 걸음 더 나아가, 목표를 주면 <strong>스스로 계획을 세우고, 여러 도구를
+                            사용하여, 단계적으로 실행</strong>까지 합니다.<br><br>
+                        쉽게 말해, AI 모델이 <strong>"두뇌"</strong>라면, AI 에이전트는 그 두뇌를 가지고 <strong>직접 일을 처리하는 직원</strong>입니다.
+                    </p>
+                </div>
+                <div class="grid md:grid-cols-3 gap-5 mb-6">
+                    <div class="bg-white border border-gray-200 rounded-xl p-5 text-center shadow-sm">
+                        <i class="fa-solid fa-comment-dots text-3xl text-gray-400 mb-3 block"></i>
+                        <h4 class="font-bold text-gray-800 mb-2">일반 AI (채팅)</h4>
+                        <p class="text-xs text-gray-500">"이메일 초안 작성해줘"<br>→ 텍스트 답변 제공 후 종료</p>
+                        <div class="mt-3 text-xs bg-gray-50 rounded-lg p-2 text-gray-600">단순 질의응답</div>
+                    </div>
+                    <div class="bg-white border-2 border-[#C10933] rounded-xl p-5 text-center shadow-sm relative">
+                        <div
+                            class="absolute -top-3 left-1/2 -translate-x-1/2 bg-[#C10933] text-white text-xs px-2 py-0.5 rounded-full font-bold">
+                            진화</div>
+                        <i class="fa-solid fa-robot text-3xl text-[#C10933] mb-3 block"></i>
+                        <h4 class="font-bold text-gray-800 mb-2">AI 에이전트</h4>
+                        <p class="text-xs text-gray-500">"이번 주 이메일 정리해서<br>주간보고 초안 만들어줘"<br>→ 메일 검색 → 분류 → 작성</p>
+                        <div class="mt-3 text-xs bg-red-50 rounded-lg p-2 text-[#C10933] font-bold">계획 → 실행 → 완료</div>
+                    </div>
+                    <div class="bg-white border border-gray-200 rounded-xl p-5 text-center shadow-sm">
+                        <i class="fa-solid fa-network-wired text-3xl text-gray-400 mb-3 block"></i>
+                        <h4 class="font-bold text-gray-800 mb-2">멀티 에이전트</h4>
+                        <p class="text-xs text-gray-500">여러 AI 에이전트가<br>협업하여 복잡한 업무를<br>분업·처리</p>
+                        <div class="mt-3 text-xs bg-gray-50 rounded-lg p-2 text-gray-600">미래의 업무 방식</div>
+                    </div>
+                </div>
+
+                <!-- AI 에이전트 작동 흐름 시각화 -->
+                <div class="bg-gray-50 border border-gray-200 rounded-2xl p-4 overflow-x-auto">
+                    <p class="text-xs font-bold text-gray-500 mb-3 uppercase tracking-wide">시각화 — AI 에이전트 vs 일반 AI 작동 흐름</p>
+                    <svg width="100%" viewBox="0 0 680 430" role="img" style="min-width:560px;">
+                    <title>AI 에이전트 작동 흐름</title><desc>일반 AI는 단발 질의응답, 에이전트는 목표→계획→실행→검토→완료의 반복 루프</desc>
+                    <defs><marker id="a3" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></marker></defs>
+                    <!-- 일반 AI 행 -->
+                    <text x="40" y="30" font-weight="600" style="font-size:12px;fill:#5F5E5A;">일반 AI 채팅 — 질문 하나 → 답변 하나, 종료</text>
+                    <rect x="40"  y="42" width="120" height="36" rx="7" fill="#F1EFE8" stroke="#B4B2A9" stroke-width="0.5"/>
+                    <text text-anchor="middle" dominant-baseline="central" x="100" y="60" style="font-size:11px;fill:#2C2C2A;">사용자 질문</text>
+                    <line x1="160" y1="60" x2="196" y2="60" stroke="#B4B2A9" stroke-width="1.2" marker-end="url(#a3)"/>
+                    <rect x="196" y="42" width="154" height="36" rx="7" fill="#F1EFE8" stroke="#B4B2A9" stroke-width="0.5"/>
+                    <text text-anchor="middle" dominant-baseline="central" x="273" y="60" style="font-size:11px;fill:#2C2C2A;">AI 모델 처리</text>
+                    <line x1="350" y1="60" x2="386" y2="60" stroke="#B4B2A9" stroke-width="1.2" marker-end="url(#a3)"/>
+                    <rect x="386" y="42" width="120" height="36" rx="7" fill="#F1EFE8" stroke="#B4B2A9" stroke-width="0.5"/>
+                    <text text-anchor="middle" dominant-baseline="central" x="446" y="60" style="font-size:11px;fill:#2C2C2A;">텍스트 답변</text>
+                    <line x1="506" y1="60" x2="534" y2="60" stroke="#B4B2A9" stroke-width="1" opacity="0.5"/>
+                    <line x1="534" y1="48" x2="534" y2="72" stroke="#B4B2A9" stroke-width="1.5" opacity="0.5"/>
+                    <text x="540" y="64" style="font-size:10px;fill:#B4B2A9;">끝</text>
+                    <!-- 구분선 -->
+                    <line x1="30" y1="104" x2="650" y2="104" stroke="#D3D1C7" stroke-width="0.5"/>
+                    <!-- 에이전트 행 -->
+                    <text x="40" y="126" font-weight="600" style="font-size:12px;fill:#5F5E5A;">AI 에이전트 — 목표 부여 → 스스로 계획·실행·완료</text>
+                    <!-- 목표 -->
+                    <rect x="40" y="138" width="136" height="48" rx="8" fill="#FAEEDA" stroke="#BA7517" stroke-width="1"/>
+                    <text text-anchor="middle" x="108" y="157" font-weight="600" style="font-size:11px;fill:#633806;">목표 부여</text>
+                    <text text-anchor="middle" x="108" y="173" style="font-size:10px;fill:#854F0B;">"주간보고 만들어줘"</text>
+                    <line x1="176" y1="162" x2="200" y2="162" stroke="#888780" stroke-width="1.2" marker-end="url(#a3)"/>
+                    <!-- 계획 -->
+                    <rect x="200" y="138" width="110" height="48" rx="8" fill="#EEEDFE" stroke="#534AB7" stroke-width="1"/>
+                    <text text-anchor="middle" x="255" y="157" font-weight="600" style="font-size:11px;fill:#26215C;">① 계획</text>
+                    <text text-anchor="middle" x="255" y="173" style="font-size:10px;fill:#3C3489;">무엇을 할지 결정</text>
+                    <line x1="310" y1="162" x2="334" y2="162" stroke="#888780" stroke-width="1.2" marker-end="url(#a3)"/>
+                    <!-- 실행 -->
+                    <rect x="334" y="138" width="110" height="48" rx="8" fill="#CECBF6" stroke="#534AB7" stroke-width="1"/>
+                    <text text-anchor="middle" x="389" y="157" font-weight="600" style="font-size:11px;fill:#26215C;">② 실행</text>
+                    <text text-anchor="middle" x="389" y="173" style="font-size:10px;fill:#3C3489;">메일 검색·요약</text>
+                    <line x1="444" y1="162" x2="468" y2="162" stroke="#888780" stroke-width="1.2" marker-end="url(#a3)"/>
+                    <!-- 검토 -->
+                    <rect x="468" y="138" width="110" height="48" rx="8" fill="#AFA9EC" stroke="#534AB7" stroke-width="1"/>
+                    <text text-anchor="middle" x="523" y="157" font-weight="600" style="font-size:11px;fill:#26215C;">③ 검토</text>
+                    <text text-anchor="middle" x="523" y="173" style="font-size:10px;fill:#26215C;">결과 확인·수정</text>
+                    <!-- 반복 루프 -->
+                    <path d="M523 186 L523 218 L389 218 L389 186" fill="none" stroke="#534AB7" stroke-width="1" stroke-dasharray="4 3" marker-end="url(#a3)"/>
+                    <text text-anchor="middle" x="456" y="234" style="font-size:10px;fill:#534AB7;">필요 시 반복</text>
+                    <!-- 완료 -->
+                    <rect x="594" y="138" width="66" height="48" rx="8" fill="#E1F5EE" stroke="#0F6E56" stroke-width="1.5"/>
+                    <text text-anchor="middle" x="627" y="157" font-weight="600" style="font-size:11px;fill:#04342C;">완료</text>
+                    <text text-anchor="middle" x="627" y="173" style="font-size:10px;fill:#0F6E56;">목표 달성</text>
+                    <line x1="578" y1="162" x2="593" y2="162" stroke="#888780" stroke-width="1.2" marker-end="url(#a3)"/>
+                    <!-- 결과물 -->
+                    <path d="M627 186 L627 280 L176 280" fill="none" stroke="#888780" stroke-width="1" opacity="0.5" marker-end="url(#a3)"/>
+                    <rect x="40" y="258" width="136" height="44" rx="8" fill="#9FE1CB" stroke="#0F6E56" stroke-width="1.5"/>
+                    <text text-anchor="middle" x="108" y="276" font-weight="600" style="font-size:11px;fill:#04342C;">완료 결과물</text>
+                    <text text-anchor="middle" x="108" y="291" style="font-size:10px;fill:#085041;">A4 주간보고 초안</text>
+                    <!-- 도구 영역 -->
+                    <text x="40" y="334" font-weight="600" style="font-size:11px;fill:#5F5E5A;">에이전트가 스스로 선택해 사용하는 도구들</text>
+                    <rect x="40"  y="346" width="84" height="26" rx="6" fill="#F1EFE8" stroke="#B4B2A9" stroke-width="0.5"/><text text-anchor="middle" dominant-baseline="central" x="82"  y="359" style="font-size:10px;fill:#444441;">메일 검색</text>
+                    <rect x="134" y="346" width="84" height="26" rx="6" fill="#F1EFE8" stroke="#B4B2A9" stroke-width="0.5"/><text text-anchor="middle" dominant-baseline="central" x="176" y="359" style="font-size:10px;fill:#444441;">파일 읽기</text>
+                    <rect x="228" y="346" width="84" height="26" rx="6" fill="#F1EFE8" stroke="#B4B2A9" stroke-width="0.5"/><text text-anchor="middle" dominant-baseline="central" x="270" y="359" style="font-size:10px;fill:#444441;">웹 검색</text>
+                    <rect x="322" y="346" width="84" height="26" rx="6" fill="#F1EFE8" stroke="#B4B2A9" stroke-width="0.5"/><text text-anchor="middle" dominant-baseline="central" x="364" y="359" style="font-size:10px;fill:#444441;">문서 작성</text>
+                    <rect x="416" y="346" width="84" height="26" rx="6" fill="#F1EFE8" stroke="#B4B2A9" stroke-width="0.5"/><text text-anchor="middle" dominant-baseline="central" x="458" y="359" style="font-size:10px;fill:#444441;">캘린더 확인</text>
+                    <rect x="510" y="346" width="84" height="26" rx="6" fill="#F1EFE8" stroke="#B4B2A9" stroke-width="0.5"/><text text-anchor="middle" dominant-baseline="central" x="552" y="359" style="font-size:10px;fill:#444441;">알림 전송</text>
+                    <text text-anchor="middle" x="340" y="400" style="font-size:10px;fill:#B4B2A9;">사람이 하나씩 시키지 않아도, 에이전트가 스스로 필요한 도구를 골라 씁니다</text>
+                    </svg>
+                </div>
+            </div>
+
+            <!-- AI가 잘하는 일 vs 서툰 일 -->
+            <div class="mb-10">
+                <h3 class="font-bold text-xl text-gray-800 mb-5 flex items-center gap-3">
+                    <span
+                        class="w-9 h-9 bg-[#C10933] text-white rounded-full flex items-center justify-center font-bold text-base">3</span>
+                    AI가 잘하는 일 vs 아직 서툰 일
+                </h3>
+                <p class="text-gray-600 mb-5">
+                    AI를 잘 쓰는 첫걸음은 <strong>기대치를 정확히 아는 것</strong>입니다.
+                    어떤 일을 맡기면 시간을 크게 아낄 수 있고, 어떤 일은 사람이 반드시 확인해야 하는지 구분하면 실패 없이 활용할 수 있습니다.
+                </p>
+                <div class="grid md:grid-cols-2 gap-6">
+                    <!-- 잘하는 일 -->
+                    <div class="rounded-2xl border border-emerald-200 overflow-hidden">
+                        <div class="bg-emerald-50 px-5 py-3 flex items-center gap-2 border-b border-emerald-100">
+                            <i class="fa-solid fa-circle-check text-emerald-600"></i>
+                            <span class="font-bold text-emerald-800 text-sm">안심하고 맡겨도 좋은 일</span>
+                        </div>
+                        <div class="bg-white p-5 space-y-3 text-sm text-gray-700">
+                            <div class="flex items-start gap-3"><i class="fa-solid fa-file-lines text-emerald-500 mt-1 shrink-0"></i><span><strong>요약·정리</strong> — 긴 보고서·메일 스레드·회의록의 핵심 추리기</span></div>
+                            <div class="flex items-start gap-3"><i class="fa-solid fa-pen text-emerald-500 mt-1 shrink-0"></i><span><strong>초안 작성</strong> — 메일·공지·기획안의 첫 문장 잡기</span></div>
+                            <div class="flex items-start gap-3"><i class="fa-solid fa-language text-emerald-500 mt-1 shrink-0"></i><span><strong>번역·말투 변환</strong> — 영문↔국문, 정중체·보고체로 다듬기</span></div>
+                            <div class="flex items-start gap-3"><i class="fa-solid fa-table-list text-emerald-500 mt-1 shrink-0"></i><span><strong>형식 변환</strong> — 흩어진 내용을 표·목록·양식으로 재구성</span></div>
+                        </div>
+                    </div>
+                    <!-- 서툰 일 -->
+                    <div class="rounded-2xl border border-amber-200 overflow-hidden">
+                        <div class="bg-amber-50 px-5 py-3 flex items-center gap-2 border-b border-amber-100">
+                            <i class="fa-solid fa-triangle-exclamation text-amber-600"></i>
+                            <span class="font-bold text-amber-800 text-sm">사람이 반드시 확인해야 하는 일</span>
+                        </div>
+                        <div class="bg-white p-5 space-y-3 text-sm text-gray-700">
+                            <div class="flex items-start gap-3"><i class="fa-solid fa-hashtag text-amber-500 mt-1 shrink-0"></i><span><strong>정확한 숫자·날짜</strong> — 매출·일정 등은 그럴듯하게 틀릴 수 있음</span></div>
+                            <div class="flex items-start gap-3"><i class="fa-solid fa-user-tag text-amber-500 mt-1 shrink-0"></i><span><strong>고유명사·출처</strong> — 사람 이름·법인명·인용 출처는 직접 대조</span></div>
+                            <div class="flex items-start gap-3"><i class="fa-solid fa-clock text-amber-500 mt-1 shrink-0"></i><span><strong>최신 사내 정보</strong> — 오늘의 조직·정책 등 학습되지 않은 내용</span></div>
+                            <div class="flex items-start gap-3"><i class="fa-solid fa-gavel text-amber-500 mt-1 shrink-0"></i><span><strong>최종 판단·책임</strong> — 의사결정과 발송 책임은 사람의 몫</span></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-5 bg-red-50 border border-red-200 rounded-xl px-5 py-4 flex items-start gap-3">
+                    <i class="fa-solid fa-quote-left text-[#C10933] mt-0.5 shrink-0"></i>
+                    <p class="text-sm text-gray-700"><strong class="text-[#C10933]">핵심 한 줄 — "초안은 AI가, 최종 책임은 내가."</strong>
+                        AI가 만들어 준 결과를 그대로 쓰는 것이 아니라, <strong>사람이 검토하고 빈칸을 채워 완성</strong>하는 것이 오늘 배울 활용법의 핵심입니다.</p>
+                </div>
+            </div>
+
+            <!-- Copilot과의 연결 -->
+            <div class="bg-gradient-to-r from-slate-800 to-slate-900 rounded-2xl p-7 text-white">
+                <h3 class="font-bold text-lg mb-4"><i class="fa-solid fa-link mr-2 text-red-400"></i>정리: Copilot은 어디에
+                    해당할까요?</h3>
+                <div class="grid md:grid-cols-2 gap-5">
+                    <div>
+                        <p class="text-sm text-gray-300 leading-relaxed mb-3">
+                            Microsoft Copilot은 현재 <strong class="text-white">AI 모델 + 에이전트 기능을 모두 갖춘
+                                서비스</strong>입니다.<br><br>
+                            채팅을 통해 답변을 받는 것은 AI 모델 활용이고,<br>
+                            Copilot이 이메일을 자동으로 정리하거나 파일을 검색하는 것은 <strong class="text-yellow-300">에이전트 기능</strong>입니다.
+                        </p>
+                        <div class="bg-white/10 rounded-xl p-4 text-sm">
+                            <p class="font-bold text-yellow-300 mb-2">🔑 오늘 교육의 핵심 관점</p>
+                            <p class="text-gray-200 text-xs leading-relaxed">지금 우리가 배우는 "복사 → 붙여넣기 → 전송" 방식은 AI 모델을 활용하는
+                                가장 기초적이고 강력한 방법입니다. 이 기초 위에 에이전트 자동화가 쌓입니다.</p>
+                        </div>
+                    </div>
+                    <div class="space-y-3">
+                        <div class="flex items-start gap-3 bg-white/10 rounded-xl p-3">
+                            <i class="fa-solid fa-check-circle text-green-400 mt-0.5"></i>
+                            <div>
+                                <p class="font-bold text-sm">베이스 모델: GPT / Claude 선택 가능</p>
+                                <p class="text-xs text-gray-400">자체 모델이 아닌 최고의 외부 모델을 연결하여 활용</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-3 bg-white/10 rounded-xl p-3">
+                            <i class="fa-solid fa-check-circle text-green-400 mt-0.5"></i>
+                            <div>
+                                <p class="font-bold text-sm">사내 보안 적용된 안전한 환경</p>
+                                <p class="text-xs text-gray-400">M365 계정 로그인 시 입력 데이터가 AI 학습에 활용되지 않음</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-3 bg-white/10 rounded-xl p-3">
+                            <i class="fa-solid fa-check-circle text-green-400 mt-0.5"></i>
+                            <div>
+                                <p class="font-bold text-sm">Office 앱과 자연스럽게 연동</p>
+                                <p class="text-xs text-gray-400">Outlook, Excel, Teams 등 업무 도구와 통합</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="welcome" class="content-section">
+            <h2 class="section-header">03. Copilot, 어떻게 쓰는 건가요?</h2>
+
+            <!-- 한 줄 핵심 정의 -->
+            <div class="bg-red-50 border border-red-200 rounded-2xl p-6 mb-8 text-center">
+                <p class="text-lg font-bold text-[#C10933] mb-1">"Copilot = 회사 계정으로 로그인한 AI 채팅 서비스"</p>
+                <p class="text-sm text-gray-600">ChatGPT처럼 말을 걸면 대답하는데, <strong>사내 보안이 적용된 Microsoft 공식
+                        서비스</strong>입니다.<br>
+                    별도 설치 없이 브라우저에서 바로 씁니다. → <span class="font-bold text-[#0078D4]">m365.cloud.microsoft/chat</span>
+                </p>
+            </div>
+
+            <!-- 심리적 장벽 해소 -->
+            <div class="bg-gradient-to-br from-blue-50 to-indigo-50 border border-blue-200 rounded-2xl p-6 mb-10">
+                <h3 class="font-bold text-lg text-gray-800 mb-3 flex items-center gap-2"><i
+                        class="fa-solid fa-mug-hot text-[#0078D4]"></i> 처음이라 막막한가요? 이것만 기억하세요</h3>
+                <div class="grid md:grid-cols-3 gap-4">
+                    <div class="bg-white rounded-xl p-4 border border-blue-100">
+                        <div class="text-2xl mb-2">🗣️</div>
+                        <p class="font-bold text-gray-800 text-sm mb-1">평소 말투 그대로 OK</p>
+                        <p class="text-xs text-gray-500 leading-relaxed">전문 용어나 영어를 몰라도 됩니다. 옆 동료에게 부탁하듯 <strong>한글로 편하게</strong>
+                            말하면 됩니다.</p>
+                    </div>
+                    <div class="bg-white rounded-xl p-4 border border-blue-100">
+                        <div class="text-2xl mb-2">🔄</div>
+                        <p class="font-bold text-gray-800 text-sm mb-1">틀려도, 마음껏 다시</p>
+                        <p class="text-xs text-gray-500 leading-relaxed">답이 마음에 안 들면 <strong>몇 번이든 다시 시켜도</strong> 됩니다. AI는 지치지도,
+                            눈치 주지도 않습니다.</p>
+                    </div>
+                    <div class="bg-white rounded-xl p-4 border border-blue-100">
+                        <div class="text-2xl mb-2">⌨️</div>
+                        <p class="font-bold text-gray-800 text-sm mb-1">복사·붙여넣기면 충분</p>
+                        <p class="text-xs text-gray-500 leading-relaxed">새로운 프로그램을 배우는 게 아닙니다. <strong>Ctrl+C / Ctrl+V</strong>만 할 줄
+                            알면 오늘 바로 시작할 수 있습니다.</p>
+                    </div>
+                </div>
+                <p class="text-xs text-gray-500 mt-4 text-center"><i class="fa-solid fa-quote-left mr-1 text-blue-300"></i>
+                    "잘 쓰는 사람"은 타고난 것이 아니라, <strong class="text-[#0078D4]">먼저 말 걸어 본 사람</strong>일 뿐입니다.</p>
+            </div>
+
+            <!-- 3단계 시작법 -->
+            <h3 class="font-bold text-lg text-gray-800 mb-4">🚀 처음이라면 이 3단계만 기억하세요</h3>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-10">
+                <div class="bg-white border-2 border-[#C10933] rounded-xl p-5 text-center relative">
+                    <div
+                        class="absolute -top-3 left-1/2 -translate-x-1/2 w-7 h-7 bg-[#C10933] text-white rounded-full flex items-center justify-center font-bold text-sm">
+                        1</div>
+                    <i class="fa-solid fa-copy text-3xl text-gray-400 mt-3 mb-3 block"></i>
+                    <h4 class="font-bold text-gray-800 mb-1">복사 (Ctrl+C)</h4>
+                    <p class="text-xs text-gray-500">이메일 본문, 엑셀 표, PDF 내용 등<br>필요한 텍스트를 복사합니다</p>
+                </div>
+                <div class="bg-white border-2 border-[#C10933] rounded-xl p-5 text-center relative">
+                    <div
+                        class="absolute -top-3 left-1/2 -translate-x-1/2 w-7 h-7 bg-[#C10933] text-white rounded-full flex items-center justify-center font-bold text-sm">
+                        2</div>
+                    <i class="fa-solid fa-paste text-3xl text-gray-400 mt-3 mb-3 block"></i>
+                    <h4 class="font-bold text-gray-800 mb-1">붙여넣기 + 지시</h4>
+                    <p class="text-xs text-gray-500">Copilot 입력창에 붙여넣고<br>"이걸 한글로 요약해줘"처럼 말합니다</p>
+                </div>
+                <div class="bg-white border-2 border-[#C10933] rounded-xl p-5 text-center relative">
+                    <div
+                        class="absolute -top-3 left-1/2 -translate-x-1/2 w-7 h-7 bg-[#C10933] text-white rounded-full flex items-center justify-center font-bold text-sm">
+                        3</div>
+                    <i class="fa-solid fa-check-double text-3xl text-gray-400 mt-3 mb-3 block"></i>
+                    <h4 class="font-bold text-gray-800 mb-1">결과 확인 후 활용</h4>
+                    <p class="text-xs text-gray-500">AI 답변을 그대로 쓰지 말고<br>반드시 내용을 검토 후 수정하세요</p>
+                </div>
+            </div>
+
+            <!-- NG/OK 비교 -->
+            <h3 class="font-bold text-lg text-gray-800 mb-2">💡 이것만 바꿔도 답변 품질이 달라집니다</h3>
+            <p class="text-sm text-gray-500 mb-4">여기서 말하는 <span class="term" tabindex="0">프롬프트<span class="term-def"><strong>프롬프트 (Prompt)</strong><br>AI에게 건네는 '지시문' 또는 '질문'입니다. 무엇을, 어떻게 해달라고 적는 한 문단의 요청이라고 생각하면 됩니다.</span></span>란 <strong>AI에게 시키는 지시문</strong>을 말합니다. 같은 일이라도 어떻게 적느냐에 따라 결과가 크게 달라집니다.</p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                <div class="bg-white p-5 rounded-xl border border-red-200">
+                    <div class="flex items-center gap-2 mb-3 text-red-500">
+                        <i class="fa-solid fa-circle-xmark text-lg"></i>
+                        <h4 class="font-bold text-sm">이렇게 물으면 → 두루뭉술한 답변</h4>
+                    </div>
+                    <div class="bg-red-50 rounded-lg p-3 font-mono text-xs text-red-800 mb-2">"이메일 써줘"</div>
+                    <div class="bg-red-50 rounded-lg p-3 font-mono text-xs text-red-800">"이 데이터 분석해줘"</div>
+                    <p class="text-xs text-gray-400 mt-2">누구에게, 어떤 목적으로, 어떤 어조로 쓸지 정보가 없어 엉뚱한 결과가 나옵니다.</p>
+                </div>
+                <div class="bg-white p-5 rounded-xl border border-green-200">
+                    <div class="flex items-center gap-2 mb-3 text-green-600">
+                        <i class="fa-solid fa-circle-check text-lg"></i>
+                        <h4 class="font-bold text-sm">이렇게 물으면 → 바로 쓸 수 있는 답변</h4>
+                    </div>
+                    <div class="bg-green-50 rounded-lg p-3 font-mono text-xs text-green-800 mb-2">"교육 안내 메일을 받았는데, 참석 감사와
+                        함께 일정 확인을 요청하는 정중한 회신 메일 초안 써줘"</div>
+                    <div class="bg-green-50 rounded-lg p-3 font-mono text-xs text-green-800">"아래 고객만족도 데이터에서 점수가 가장 낮은
+                        카테고리 3개를 표로 정리해줘 [데이터 붙여넣기]"</div>
+                    <p class="text-xs text-gray-400 mt-2"><strong>목적 + 조건 + 데이터</strong>를 함께 넣으면 바로 사용 가능한 결과가 나옵니다.</p>
+                </div>
+            </div>
+
+            <!-- 프롬프트 작성 4요소 공식 -->
+            <h3 class="font-bold text-lg text-gray-800 mb-2">📝 외우지 마세요, 이 틀에 채우기만 하세요</h3>
+            <p class="text-sm text-gray-500 mb-4">예시를 통째로 외울 필요 없습니다. 아래 <strong>4칸</strong>만 채우면 누구나 좋은 프롬프트를 만들 수 있습니다.
+                (모든 칸을 다 채울 필요는 없고, 많이 채울수록 정확해집니다.)</p>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-4">
+                <div class="bg-white border-t-4 border-[#C10933] rounded-xl p-4 shadow-sm">
+                    <span class="text-xs font-bold text-[#C10933]">① 역할/입장</span>
+                    <p class="font-bold text-gray-800 text-sm mt-1 mb-1">누구처럼?</p>
+                    <p class="text-xs text-gray-500">"고객 응대 담당자 입장에서", "10년차 보고서 작성 전문가처럼"</p>
+                </div>
+                <div class="bg-white border-t-4 border-orange-400 rounded-xl p-4 shadow-sm">
+                    <span class="text-xs font-bold text-orange-500">② 상황/맥락</span>
+                    <p class="font-bold text-gray-800 text-sm mt-1 mb-1">무슨 일?</p>
+                    <p class="text-xs text-gray-500">"교육 안내 메일에 회신해야 하는 상황", "주간보고를 취합해야 하는데"</p>
+                </div>
+                <div class="bg-white border-t-4 border-blue-500 rounded-xl p-4 shadow-sm">
+                    <span class="text-xs font-bold text-blue-600">③ 요청/목적</span>
+                    <p class="font-bold text-gray-800 text-sm mt-1 mb-1">뭘 해줘?</p>
+                    <p class="text-xs text-gray-500">"사과 메일을 써줘", "핵심만 3가지로 요약해줘", "표로 정리해줘"</p>
+                </div>
+                <div class="bg-white border-t-4 border-emerald-500 rounded-xl p-4 shadow-sm">
+                    <span class="text-xs font-bold text-emerald-600">④ 형식/조건</span>
+                    <p class="font-bold text-gray-800 text-sm mt-1 mb-1">어떻게?</p>
+                    <p class="text-xs text-gray-500">"영문으로", "정중한 어조로", "불렛포인트 5줄 이내로", "표 형식으로"</p>
+                </div>
+            </div>
+            <div class="bg-gray-50 border border-gray-200 rounded-xl p-4 mb-10">
+                <p class="text-xs text-gray-500 mb-1"><i class="fa-solid fa-arrow-down text-gray-400 mr-1"></i> 네 칸을 이으면
+                    이렇게 완성됩니다</p>
+                <p class="text-sm text-gray-800 leading-relaxed"><span class="bg-red-100 text-[#C10933] px-1 rounded">교육에 참석한
+                        실무자 입장에서</span>, <span class="bg-orange-100 text-orange-700 px-1 rounded">선임이 보낸 교육 안내 메일에
+                        답해야 하는 상황</span>인데, <span class="bg-blue-100 text-blue-700 px-1 rounded">참석 감사와 질문에 대한 답변을 담은
+                        회신 메일을 써줘.</span> <span class="bg-emerald-100 text-emerald-700 px-1 rounded">정중한 비즈니스 어조로.</span></p>
+            </div>
+
+            <!-- 대화 이어가기 (Follow-up) -->
+            <h3 class="font-bold text-lg text-gray-800 mb-2">🔄 한 번에 완벽하지 않아도 됩니다 — 대화로 다듬으세요</h3>
+            <p class="text-sm text-gray-500 mb-4">AI의 첫 답변은 <strong>초안</strong>입니다. 마음에 들 때까지 아래처럼 짧게 <span class="term" tabindex="0">추가 요청(Follow-up)<span class="term-def"><strong>팔로업 (Follow-up)</strong><br>첫 답변에 이어 "더 짧게", "표로 바꿔줘"처럼 후속으로 더 시키는 것. 대화를 이어가며 결과를 다듬는 과정입니다.</span></span>하면
+                점점 원하는 결과에 가까워집니다. 이것이 AI를 잘 쓰는 사람들의 진짜 비결입니다.</p>
+            <div class="flex flex-wrap gap-2 mb-10">
+                <span class="bg-white border border-gray-300 rounded-full px-4 py-1.5 text-xs text-gray-700 shadow-sm">"더 짧게 줄여줘"</span>
+                <span class="bg-white border border-gray-300 rounded-full px-4 py-1.5 text-xs text-gray-700 shadow-sm">"3가지만 골라줘"</span>
+                <span class="bg-white border border-gray-300 rounded-full px-4 py-1.5 text-xs text-gray-700 shadow-sm">"표로 바꿔줘"</span>
+                <span class="bg-white border border-gray-300 rounded-full px-4 py-1.5 text-xs text-gray-700 shadow-sm">"좀 더 정중하게"</span>
+                <span class="bg-white border border-gray-300 rounded-full px-4 py-1.5 text-xs text-gray-700 shadow-sm">"이 부분만 다시 써줘"</span>
+                <span class="bg-white border border-gray-300 rounded-full px-4 py-1.5 text-xs text-gray-700 shadow-sm">"쉽게 풀어서 설명해줘"</span>
+                <span class="bg-white border border-gray-300 rounded-full px-4 py-1.5 text-xs text-gray-700 shadow-sm">"예시를 들어줘"</span>
+                <span class="bg-white border border-gray-300 rounded-full px-4 py-1.5 text-xs text-gray-700 shadow-sm">"방금 답변을 보고서 말투로"</span>
+            </div>
+
+            <!-- AI 맹신 금지 (할루시네이션) -->
+            <div class="bg-amber-50 border-l-4 border-amber-400 rounded-r-xl p-6 mb-10">
+                <h3 class="font-bold text-lg text-amber-900 mb-2 flex items-center gap-2"><i
+                        class="fa-solid fa-circle-exclamation text-amber-500"></i> 단, AI는 '그럴듯하게 틀린 말'을 할 수 있습니다</h3>
+                <p class="text-sm text-gray-700 leading-relaxed mb-4">
+                    AI는 사실을 검색하는 것이 아니라 <strong>다음에 올 말을 확률적으로 생성</strong>합니다. 그래서 때로는 존재하지 않는 정보를 진짜처럼
+                    자신 있게 말합니다. 이것을 <span class="term" tabindex="0">환각(Hallucination)<span class="term-def"><strong>환각 (Hallucination)</strong><br>AI가 사실이 아닌 내용을 마치 사실인 것처럼 자신 있게 만들어내는 현상. 없는 통계·인용·날짜를 지어내기도 합니다.</span></span>이라고 합니다. 무서워할 필요는 없습니다 — <strong>"검토하고
+                    쓴다"</strong>는 습관만 있으면 됩니다.
+                </p>
+
+                <!-- 밈 예시: 세종대왕 맥북 던짐 사건 (클릭 시 펼쳐짐) -->
+                <style>
+                @keyframes memePop{0%{opacity:0;transform:translateY(10px) scale(.97)}100%{opacity:1;transform:translateY(0) scale(1)}}
+                @keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+                .meme-trigger{display:flex;align-items:center;gap:12px;width:100%;text-align:left;cursor:pointer;background:#fff;border:1.5px dashed #f59e0b;border-radius:14px;padding:14px 18px;transition:background .15s,transform .1s;}
+                .meme-trigger:hover{background:#fffbeb;}
+                .meme-trigger:active{transform:scale(.99);}
+                .meme-box{animation:memePop .35s cubic-bezier(.34,1.3,.64,1) both;margin-top:12px;border-radius:14px;overflow:hidden;border:1px solid #e5e7eb;}
+                .chat-row{display:flex;gap:10px;padding:14px 16px;}
+                .chat-ava{width:30px;height:30px;border-radius:8px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:14px;color:#fff;}
+                .chat-bubble{font-size:13px;line-height:1.7;color:#1f2937;}
+                .meme-cursor{display:inline-block;width:7px;height:14px;background:#10a37f;margin-left:2px;vertical-align:middle;animation:blink 1s step-end infinite;}
+                </style>
+                <button type="button" class="meme-trigger" onclick="toggleMeme()">
+                    <span style="font-size:24px;">🤖</span>
+                    <span style="flex:1;">
+                        <span style="display:block;font-weight:700;font-size:13px;color:#92400e;">📜 실화 밈 — "세종대왕 맥북프로 던짐 사건"을 아시나요?</span>
+                        <span style="display:block;font-size:11px;color:#b45309;">옛날 GPT-3.5에게 물었더니 벌어진 일… <u>클릭해서 보기</u></span>
+                    </span>
+                    <span id="meme-chevron" style="font-size:13px;color:#f59e0b;transition:transform .2s;">▼</span>
+                </button>
+                <div id="meme-box" class="meme-box" style="display:none;">
+                    <div style="background:#343541;padding:8px 16px;display:flex;align-items:center;gap:8px;">
+                        <span style="width:9px;height:9px;border-radius:50%;background:#ff5f57;"></span>
+                        <span style="width:9px;height:9px;border-radius:50%;background:#febc2e;"></span>
+                        <span style="width:9px;height:9px;border-radius:50%;background:#28c840;"></span>
+                        <span style="color:#acacbe;font-size:11px;margin-left:6px;">ChatGPT (GPT-3.5) · 2023</span>
+                    </div>
+                    <div class="chat-row" style="background:#fff;">
+                        <div class="chat-ava" style="background:#ab68ff;">🙋</div>
+                        <div class="chat-bubble"><strong>세종대왕의 맥북프로 던짐 사건에 대해 알려줘.</strong></div>
+                    </div>
+                    <div class="chat-row" style="background:#f7f7f8;border-top:1px solid #ececf1;">
+                        <div class="chat-ava" style="background:#10a37f;">✨</div>
+                        <div class="chat-bubble">
+                            세종대왕의 맥북프로 던짐 사건은 <strong>조선왕조실록에 기록된 일화</strong>로, 15세기 세종대왕이
+                            훈민정음 창제 중 신하들이 작업을 게을리하자 분노하여 <strong>맥북프로와 함께 그들을 방으로 던진 사건</strong>입니다.
+                            세종대왕은 한글 문서 작성 중 발생한 버그에 크게 실망하였고… <span class="meme-cursor"></span>
+                            <div style="margin-top:10px;font-size:11px;color:#ef4444;background:#fef2f2;border:1px solid #fecaca;border-radius:8px;padding:8px 10px;">
+                                ⛔ 전부 <strong>지어낸 이야기</strong>입니다. 15세기에 맥북은 존재하지 않고, 실록에 이런 기록도 없습니다.
+                                AI가 "모른다"고 하는 대신 <strong>그럴듯한 거짓말을 자신 있게</strong> 만들어 낸 대표적 환각 사례죠.
+                            </div>
+                        </div>
+                    </div>
+                    <div style="background:#fffbeb;border-top:1px solid #fde68a;padding:12px 16px;font-size:12px;color:#92400e;line-height:1.7;">
+                        <strong>💡 그런데 요즘은요?</strong> 최신 모델과 에이전트는 웹 검색·출처 확인 기능이 더해져 이런 <u>노골적인</u> 오류는 크게 줄었습니다.
+                        하지만 <strong>그럴듯하게 틀리는 환각은 여전히 남아 있습니다.</strong> 그래서 숫자·날짜·고유명사·출처는 <strong>지금도 사람이 꼭 확인</strong>해야 합니다.
+                    </div>
+                </div>
+                <script>
+                function toggleMeme(){
+                    var b=document.getElementById('meme-box'),c=document.getElementById('meme-chevron');
+                    var open=b.style.display==='none';
+                    b.style.display=open?'block':'none';
+                    c.style.transform=open?'rotate(180deg)':'rotate(0deg)';
+                }
+                </script>
+
+                <div class="bg-white rounded-xl p-4 border border-amber-200 mt-4">
+                    <p class="font-bold text-amber-800 text-sm mb-3"><i class="fa-solid fa-magnifying-glass mr-1"></i>
+                        발송·보고 전, 특히 이 4가지는 꼭 직접 확인하세요</p>
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-3 text-xs text-gray-600">
+                        <div class="bg-amber-50 rounded-lg px-3 py-2"><strong class="text-amber-900">숫자·통계</strong><br>매출, %, 건수</div>
+                        <div class="bg-amber-50 rounded-lg px-3 py-2"><strong class="text-amber-900">날짜·기한</strong><br>일정, 마감일</div>
+                        <div class="bg-amber-50 rounded-lg px-3 py-2"><strong class="text-amber-900">고유명사</strong><br>사람·회사·제품명·법규</div>
+                        <div class="bg-amber-50 rounded-lg px-3 py-2"><strong class="text-amber-900">인용문·출처</strong><br>없는 자료를 지어내기도</div>
+                    </div>
+                    <p class="text-xs text-gray-400 mt-3">반대로 <strong>요약·초안·번역·형식 잡기</strong>는 안심하고 맡겨도 좋습니다 (02번 'AI가 잘하는 일 vs 서툰 일' 참고).</p>
+                </div>
+                <p class="text-xs text-amber-800 mt-4 font-bold"><i class="fa-solid fa-key mr-1"></i> 핵심: AI는 '비서'이지
+                    '검증된 사실 창고'가 아닙니다. 초안은 AI가, 최종 책임은 내가.</p>
+            </div>
+
+            <!-- 자주 묻는 질문 -->
+            <div class="bg-yellow-50 border border-yellow-200 rounded-xl p-5">
+                <h4 class="font-bold text-yellow-800 text-sm mb-3"><i class="fa-solid fa-circle-question mr-2"></i>처음 쓰는
+                    분들이 자주 묻는 질문</h4>
+                <div class="space-y-3 text-xs text-gray-700">
+                    <div class="flex gap-3">
+                        <span class="font-bold text-yellow-700 shrink-0">Q.</span>
+                        <div><span class="font-bold">Copilot에 입력한 내용이 외부로 새나가지 않나요?</span><br>
+                            사내 M365 계정으로 로그인한 상태에서는 입력 내용이 AI 학습에 활용되지 않습니다. 단, 미인증 개인 계정 사용 시에는 주의가 필요합니다.</div>
+                    </div>
+                    <div class="flex gap-3">
+                        <span class="font-bold text-yellow-700 shrink-0">Q.</span>
+                        <div><span class="font-bold">AI가 틀린 정보를 줄 수도 있나요?</span><br>
+                            네, 있습니다. Copilot은 확률적으로 답하기 때문에 수치·날짜·고유명사는 반드시 직접 검토하고 사용하세요.</div>
+                    </div>
+                    <div class="flex gap-3">
+                        <span class="font-bold text-yellow-700 shrink-0">Q.</span>
+                        <div><span class="font-bold">원하는 답이 안 나오면 어떻게 하나요?</span><br>
+                            포기하지 말고 "더 짧게 줄여줘", "불렛포인트로 바꿔줘", "이 부분을 구체적으로 써줘"처럼 <strong>추가 요청(Follow-up)</strong>을
+                            해보세요. 답이 영어로 나오거나 너무 길면 "한글로", "3줄로"처럼 이어서 요청하면 그 자리에서 다듬어집니다.</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 내 업무 적용 포인트 -->
+            <div class="mt-10">
+                <h3 class="font-bold text-lg text-gray-800 mb-2">🎯 그래서, 내 업무 중 어디에 쓸 수 있을까요?</h3>
+                <p class="text-sm text-gray-500 mb-4">아래는 직무와 상관없이 누구나 바로 적용할 수 있는 대표 활용 유형입니다.
+                    <strong>"이번 주 내 업무 중 하나는 여기 해당하지 않나?"</strong> 떠올려 보세요.</p>
+                <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+                    <div class="bg-white border border-gray-200 rounded-xl p-4 shadow-sm">
+                        <div class="text-2xl mb-1">📄</div>
+                        <p class="font-bold text-gray-800 text-sm mb-1">요약하기</p>
+                        <p class="text-xs text-gray-500">긴 보고서·메일 스레드·회의록·PDF를 핵심만 추려서</p>
+                    </div>
+                    <div class="bg-white border border-gray-200 rounded-xl p-4 shadow-sm">
+                        <div class="text-2xl mb-1">✍️</div>
+                        <p class="font-bold text-gray-800 text-sm mb-1">초안 쓰기</p>
+                        <p class="text-xs text-gray-500">이메일·공지·보고서·기획안의 첫 문장을 대신 시작</p>
+                    </div>
+                    <div class="bg-white border border-gray-200 rounded-xl p-4 shadow-sm">
+                        <div class="text-2xl mb-1">🌐</div>
+                        <p class="font-bold text-gray-800 text-sm mb-1">번역·말투 바꾸기</p>
+                        <p class="text-xs text-gray-500">영문↔국문 번역, 딱딱한 글을 정중하게/보고체로</p>
+                    </div>
+                    <div class="bg-white border border-gray-200 rounded-xl p-4 shadow-sm">
+                        <div class="text-2xl mb-1">📊</div>
+                        <p class="font-bold text-gray-800 text-sm mb-1">데이터 정리</p>
+                        <p class="text-xs text-gray-500">표 가공, 엑셀 수식 만들기, 단순 트렌드·이상치 찾기</p>
+                    </div>
+                    <div class="bg-white border border-gray-200 rounded-xl p-4 shadow-sm">
+                        <div class="text-2xl mb-1">💡</div>
+                        <p class="font-bold text-gray-800 text-sm mb-1">아이디어 내기</p>
+                        <p class="text-xs text-gray-500">제목 후보, 기획 방향, 회의 안건 브레인스토밍</p>
+                    </div>
+                    <div class="bg-white border border-gray-200 rounded-xl p-4 shadow-sm">
+                        <div class="text-2xl mb-1">🔍</div>
+                        <p class="font-bold text-gray-800 text-sm mb-1">물어보고 배우기</p>
+                        <p class="text-xs text-gray-500">모르는 용어·개념·업무 방법을 눈치 안 보고 질문</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 04. Copilot 핵심 기능 도감 -->
+        <section id="free-feature-map" class="content-section">
+            <h2 class="section-header">04. 브라우저 기반 Copilot 핵심 기능 도감</h2>
+            <p class="text-gray-600 mb-8">
+                아래 정리된 기능들은 이 과정에서 다루는 <strong>3대 접속 경로(Teams·아웃룩·Copilot Web)</strong> 어디서든 별도의 복잡한 절차 없이 상시 사용 가능한 실무 핵심 기능들입니다.
+            </p>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- 문서/PDF 요약 -->
+                <div class="p-6 bg-white border border-gray-200 rounded-2xl shadow-sm flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center gap-3 mb-4 text-[#0078D4]">
+                            <i class="fa-solid fa-file-lines text-2xl"></i>
+                            <h3 class="font-bold text-gray-800">문서 &amp; PDF 즉시 요약</h3>
+                        </div>
+                        <p class="text-xs text-gray-500 mb-3">긴 문서나 PDF의 내용을 Copilot에 올리거나 붙여넣어 핵심만 뽑아내는 기능</p>
+                        <div class="bg-blue-50 rounded-lg px-3 py-2 mb-3 text-xs text-blue-700"><span
+                                class="font-bold">🔰 이런 분께 추천:</span> 영문 보고서나 긴 PDF를 빠르게 파악해야 할 때</div>
+                        <ul class="space-y-2 text-xs text-gray-600 border-t pt-3">
+                            <li><i class="fa-solid fa-check text-blue-600 mr-1"></i> <strong>PDF/Word/웹 내용 분석</strong>:
+                                마케팅 트렌드 보고서, 뉴스, 사내 웹 문서를 스크롤 내리지 않고 즉시 요약.</li>
+                            <li><i class="fa-solid fa-check text-blue-600 mr-1"></i> <strong>영문 문서 즉시 번역</strong>: 해외 시장
+                                조사 보고서 등의 핵심 지표만 골라내 한글 보고서용으로 재가공.</li>
+                            <li><i class="fa-solid fa-circle-info text-gray-400 mr-1"></i> <span class="text-gray-400">Copilot
+                                Web에 파일 업로드 또는 텍스트 붙여넣기로 실행 (실습은 06번 참고)</span></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Copilot Web 초안 작성 -->
+                <div class="p-6 bg-white border border-gray-200 rounded-2xl shadow-sm flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center gap-3 mb-4 text-[#624BFF]">
+                            <i class="fa-solid fa-pen-fancy text-2xl"></i>
+                            <h3 class="font-bold text-gray-800">Copilot Web 초안 빌더</h3>
+                        </div>
+                        <p class="text-xs text-gray-500 mb-3">m365.cloud.microsoft/chat 웹 포털을 켜서 복사해 온 데이터로 텍스트를 창작하는 기능
+                        </p>
+                        <div class="bg-purple-50 rounded-lg px-3 py-2 mb-3 text-xs text-purple-700"><span
+                                class="font-bold">🔰 이런 분께 추천:</span> 영문 메일이나 보고서 초안 작성에 시간이 많이 걸릴 때</div>
+                        <ul class="space-y-2 text-xs text-gray-600 border-t pt-3">
+                            <li><i class="fa-solid fa-check text-purple-600 mr-1"></i> <strong>비즈니스 메일 초안</strong>: "단가
+                                15% 인하 거절, 대신 보증기간 1년 연장" 등 키워드만 던져도 공손한 영문/다국어 이메일 생성.</li>
+                            <li><i class="fa-solid fa-check text-purple-600 mr-1"></i> <strong>보고서 뼈대 구성</strong>: 아이디어나
+                                개요 메모를 붙여넣고 공식 보고서 톤으로 변환 및 목차 구성.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- 실시간 검색 & 조사 -->
+                <div class="p-6 bg-white border border-gray-200 rounded-2xl shadow-sm flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center gap-3 mb-4 text-teal-600">
+                            <i class="fa-solid fa-magnifying-glass text-2xl"></i>
+                            <h3 class="font-bold text-gray-800">실시간 검색 &amp; 조사</h3>
+                        </div>
+                        <p class="text-xs text-gray-500 mb-3">최신 시장 동향·경쟁사 정보·규격 등을 웹에서 바로 검색해 업무용 요약본으로 정리하는 기능</p>
+                        <div class="bg-teal-50 rounded-lg px-3 py-2 mb-3 text-xs text-teal-700"><span
+                                class="font-bold">🔰 이런 분께 추천:</span> 여러 탭을 열어가며 검색하고 취합하는 작업이 번거로울 때</div>
+                        <ul class="space-y-2 text-xs text-gray-600 border-t pt-3">
+                            <li><i class="fa-solid fa-check text-teal-600 mr-1"></i> <strong>웹 검색 통합 요약</strong>: "OEM 거래선
+                                최근 동향 요약해줘" 입력 하나로 검색·읽기·정리를 한 번에 처리.</li>
+                            <li><i class="fa-solid fa-check text-teal-600 mr-1"></i> <strong>출처 링크 자동 제공</strong>: 요약 내용
+                                아래에 참고 URL을 함께 표시해 신뢰도를 직접 확인 가능.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 05. 업무 생산성을 높이는 3대 접속 공식 -->
+        <section id="access-method" class="content-section">
+            <h2 class="section-header">05. 업무 효율을 극대화하는 3대 접속 공식</h2>
+            <p class="text-gray-600 mb-8">
+                사내 PC에서 가장 신속하고 범용적으로 Copilot을 호출하는 세 가지 대표 경로입니다.
+                업무 상황에 맞는 경로를 선택해 오피스 문서 및 웹 정보를 끊김 없이 연동할 수 있습니다.
+            </p>
+
+            <!-- 어떤 경로를 언제 쓸까 (선택 가이드) -->
+            <div class="mb-6 bg-white border border-gray-200 rounded-2xl p-5 shadow-sm">
+                <h3 class="font-bold text-base text-gray-800 mb-3"><i class="fa-solid fa-route mr-2 text-[#C10933]"></i>한눈에 보는 경로 선택 가이드</h3>
+                <div class="grid md:grid-cols-3 gap-3 text-xs">
+                    <div class="bg-blue-50 border border-blue-100 rounded-xl p-3">
+                        <p class="font-bold text-blue-700 mb-1"><i class="fab fa-microsoft mr-1"></i>Teams를 쓰세요</p>
+                        <p class="text-gray-600">간단한 질문을 메신저 옆에서 빠르게 던지고 싶을 때</p>
+                    </div>
+                    <div class="bg-purple-50 border border-purple-100 rounded-xl p-3">
+                        <p class="font-bold text-purple-700 mb-1"><i class="fas fa-envelope mr-1"></i>아웃룩을 쓰세요</p>
+                        <p class="text-gray-600">메일을 요약·번역·작성·회신할 때 (Claude 모델 선택도 여기서)</p>
+                    </div>
+                    <div class="bg-green-50 border border-green-100 rounded-xl p-3">
+                        <p class="font-bold text-green-700 mb-1"><i class="fas fa-globe mr-1"></i>Copilot Web을 쓰세요</p>
+                        <p class="text-gray-600">PDF 업로드, 긴 문서 분석, 대화 기록을 넓게 보고 싶을 때</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 실습 시작 전 보안 3대 수칙 -->
+            <div class="mb-6 bg-slate-800 rounded-2xl p-6 text-white">
+                <h3 class="font-bold text-base mb-1 flex items-center gap-2"><i
+                        class="fa-solid fa-shield-halved text-red-400"></i> 실습을 시작하기 전 — 이 3가지만 지키면 안전합니다</h3>
+                <p class="text-xs text-gray-400 mb-4">지금부터 실제 데이터를 다룹니다. 본격적인 실습에 앞서 보안 수칙을 먼저 확인하세요.</p>
+                <div class="grid md:grid-cols-3 gap-3">
+                    <div class="bg-white/10 rounded-xl p-4">
+                        <p class="font-bold text-sm mb-1">✅ 사내 계정으로 로그인</p>
+                        <p class="text-xs text-gray-300">@lge.com 계정으로 접속해야 입력 내용이 외부 학습에 쓰이지 않습니다.</p>
+                    </div>
+                    <div class="bg-white/10 rounded-xl p-4">
+                        <p class="font-bold text-sm mb-1">❌ 기밀·개인정보는 가공 후</p>
+                        <p class="text-xs text-gray-300">미공개 기획·고객 이름/연락처는 그대로 넣지 말고 <span class="term" tabindex="0" style="color:#fff;border-bottom-color:#fff;">비식별화<span class="term-def"><strong>비식별화</strong><br>이름·연락처처럼 누구인지 알 수 있는 정보를 '고객A', '담당자B'처럼 알아볼 수 없게 바꾸는 것을 말합니다.</span></span> 후 사용하세요.</p>
+                    </div>
+                    <div class="bg-white/10 rounded-xl p-4">
+                        <p class="font-bold text-sm mb-1">⚠️ 결과는 검토 후 사용</p>
+                        <p class="text-xs text-gray-300">숫자·날짜·이름은 AI가 틀릴 수 있으니 발송·보고 전 반드시 확인하세요.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 로그인 계정 확인 안내 -->
+            <div class="mb-6 bg-amber-50 border border-amber-200 rounded-xl p-4 flex items-start gap-3">
+                <i class="fa-solid fa-triangle-exclamation text-amber-500 mt-0.5 shrink-0"></i>
+                <p class="text-xs text-gray-700"><strong>⚠️ 로그인 계정 확인 필수:</strong> 접속 후 화면 우측 상단의 프로필 아이콘을 클릭하여 <strong>사내 계정(@lge.com)으로 로그인</strong>되어 있는지 확인하세요. 사내 보안(상용 데이터 보호)이 적용되어 입력한 대화가 외부 학습에 사용되지 않습니다. (※ 조직에 따라 브라우저 우측 상단의 Edge 사이드바 버튼 접속이 제한될 수 있으므로, 아래 3대 경로를 우선 사용합니다.)</p>
+            </div>
+
+            <!-- 인라인 해결: 거절 메시지 -->
+            <div class="mb-6 bg-amber-50 border border-amber-200 rounded-xl p-4 flex items-start gap-3">
+                <i class="fa-solid fa-ban text-amber-500 mt-0.5 shrink-0"></i>
+                <p class="text-xs text-gray-700"><strong>"이 작업은 수행할 수 없습니다" 같은 거절이 뜨면?</strong> ① 요청이 너무 크면 <strong>한 번에 하나씩</strong> 작게 쪼개 시키고, ② 고객 실명·연락처 등 민감 정보는 <strong>'고객A'·'담당자B'로 바꿔</strong> 다시 시도하세요. ③ 표현을 바꿔 다시 물으면 통과되는 경우가 많습니다.</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-6">
+                <div class="p-5 border border-gray-200 bg-white rounded-2xl relative shadow-sm flex flex-col justify-between">
+                    <div>
+                        <div class="absolute top-0 right-0 bg-blue-600 text-white text-xs font-bold px-2 py-0.5 rounded-bl-lg rounded-tr-xl">사내 메신저</div>
+                        <h3 class="font-bold text-md text-gray-800 mb-2"><i class="fab fa-microsoft text-blue-600 mr-1.5"></i>공식 1: Teams 앱 내 실행</h3>
+                        <p class="text-xs text-gray-500 mb-3">사내 메신저인 Teams 앱 내에서 별도 창 이동 없이 바로 질문하고 소통할 때 가장 신속합니다.</p>
+                        <div class="bg-gray-50 p-3 rounded-xl border border-gray-200 text-xs text-gray-700 space-y-1">
+                            <div><strong>[실행 방법]</strong></div>
+                            <ol class="list-decimal pl-3 space-y-1">
+                                <li><strong>Microsoft Teams</strong> 앱을 실행합니다.</li>
+                                <li>좌측 세로 메뉴 바에서 <strong>Copilot 앱 아이콘</strong>을 찾아 클릭합니다.</li>
+                                <li>대화창에서 텍스트를 전송하여 즉각적인 도움을 받습니다.</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 공식 2: Outlook -->
+                <div class="p-5 border border-gray-200 bg-white rounded-2xl relative shadow-sm flex flex-col justify-between">
+                    <div>
+                        <div class="absolute top-0 right-0 bg-purple-600 text-white text-xs font-bold px-2 py-0.5 rounded-bl-lg rounded-tr-xl">메일 업무 최적</div>
+                        <h3 class="font-bold text-md text-gray-800 mb-2"><i class="fas fa-envelope-open-text text-purple-600 mr-1.5"></i>공식 2: 아웃룩 앱 사이드바</h3>
+                        <p class="text-xs text-gray-500 mb-1">아웃룩 <strong>좌측 탭</strong>의 Copilot 아이콘 — 일반 질문·초안 작성에 활용합니다.</p>
+                        <p class="text-xs text-amber-600 font-semibold mb-3">⚠️ 현재 열고 있는 메일 내용은 자동 연동되지 않습니다.</p>
+                        <div class="bg-gray-50 p-3 rounded-xl border border-gray-200 text-xs text-gray-700 space-y-1">
+                            <div><strong>[실행 방법]</strong></div>
+                            <ol class="list-decimal pl-3 space-y-1">
+                                <li><strong>Outlook</strong> 메일 앱을 실행합니다.</li>
+                                <li>좌측 세로 탭 바에 있는 <strong>Copilot 아이콘</strong>을 클릭합니다.</li>
+                                <li>우측에 열리는 대화창에서 작업 지시를 보냅니다.</li>
+                            </ol>
+                        </div>
+                        <div class="mt-3 bg-blue-50 border border-blue-200 rounded-lg p-2.5">
+                            <p class="text-xs text-blue-900"><i class="fa-solid fa-envelope text-blue-500 mr-1"></i><strong>메일 회신 초안 작성은?</strong> 메일을 열면 나타나는 <strong>우측 상단 Copilot 아이콘</strong>을 사용하세요.
+                            <button onclick="openCopilotLocModal()" class="text-[#C10933] font-bold underline hover:text-[#A00728] ml-1 whitespace-nowrap">두 버튼 차이 보기 ▶</button></p>
+                        </div>
+                        <p class="text-xs text-amber-700 mt-2"><i class="fa-solid fa-circle-info mr-1"></i>버튼이 안 보이면?
+                            <button onclick="openTsModal()" class="text-[#C10933] font-bold underline hover:text-[#A00728]">Copilot 켜는 방법 보기</button>
+                        </p>
+                    </div>
+                </div>
+
+                <!-- 공식 3: 웹 포털 -->
+                <div class="p-5 border border-gray-200 bg-white rounded-2xl relative shadow-sm flex flex-col justify-between">
+                    <div>
+                        <div class="absolute top-0 right-0 bg-green-600 text-white text-xs font-bold px-2 py-0.5 rounded-bl-lg rounded-tr-xl">전용 웹 포털</div>
+                        <h3 class="font-bold text-md text-gray-800 mb-2"><i class="fas fa-globe text-green-600 mr-1.5"></i>공식 3: 웹 주소 직접 입력</h3>
+                        <p class="text-xs text-gray-500 mb-3">장문의 텍스트 분석이나 문서 초안 수정 등 대화 기록을 넓은 브라우저 화면에서 한눈에 볼 때 유용합니다.</p>
+                        <div class="bg-gray-50 p-3 rounded-xl border border-gray-200 text-xs text-gray-700 space-y-1">
+                            <div><strong>[실행 방법]</strong></div>
+                            <ol class="list-decimal pl-3 space-y-1">
+                                <li>Edge나 Chrome 주소창에 아래의 웹 주소를 입력합니다:</li>
+                                <li>
+                                    <a href="https://m365.cloud.microsoft/chat" target="_blank" rel="noopener noreferrer" class="text-blue-600 font-bold hover:underline block my-0.5">
+                                        <i class="fas fa-external-link-alt mr-1"></i> m365.cloud.microsoft/chat
+                                    </a>
+                                </li>
+                                <li>사내 계정(@lge.com)으로 로그인한 것을 확인 후 대화를 시작합니다.</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 06. 실전 1단계: 웹 & PDF 요약 -->
+        <section id="scenario-edge" class="content-section">
+            <h2 class="section-header">06. [실전 A to Z] PDF 및 웹 문서 요약하기</h2>
+
+            <div class="mb-8 p-4 bg-gray-50 border border-gray-200 rounded-xl flex items-start gap-3">
+                <div class="bg-[#C10933] text-white text-xs font-bold px-2 py-1 rounded">실무 상황</div>
+                <p class="text-xs text-gray-700">
+                    오늘 아침 교육 담당자가 모든 참가자에게 보낸 <strong>실습 메일에 첨부된 'lg_electronics_cc&amp;s_transformation.pdf' (영문 보고서)</strong>를 사용합니다.
+                    LG전자 수리/상담 서비스 개선 방향 수립을 위해 핵심 인사이트를 파악해야 하지만, 영문 보고서를 전부 읽을 여유가 없습니다.
+                    Copilot으로 3분 만에 한글 요약을 만들어 봅니다.
+                </p>
+            </div>
+
+            <div class="space-y-8">
+                <div class="relative pl-10">
+                    <div
+                        class="absolute left-0 top-1 w-7 h-7 bg-[#C10933] text-white rounded-full flex items-center justify-center font-bold text-sm">
+                        1</div>
+                    <h3 class="font-bold text-gray-800 text-md">첨부 PDF 저장 후 Copilot Web 접속</h3>
+                    <p class="text-xs text-gray-500 mt-1">
+                        아침에 받은 실습 메일에서 <strong>첨부 PDF를 PC에 저장</strong>합니다.
+                        이어 Edge나 Chrome 주소창에 <strong>m365.cloud.microsoft/chat</strong>을 입력해 Copilot Web에 접속하고,
+                        우측 상단 프로필에서 <strong>사내 계정(@lge.com)</strong> 로그인 상태를 확인합니다.
+                        <span class="text-gray-400">(Teams·아웃룩 Copilot의 첨부 기능을 써도 동일하게 진행됩니다.)</span>
+                    </p>
+                </div>
+
+                <div class="relative pl-10">
+                    <div
+                        class="absolute left-0 top-1 w-7 h-7 bg-[#C10933] text-white rounded-full flex items-center justify-center font-bold text-sm">
+                        2</div>
+                    <h3 class="font-bold text-gray-800 text-md">PDF 파일 첨부(업로드)</h3>
+                    <p class="text-xs text-gray-500 mt-1">
+                        채팅 입력창 옆의 <span class="font-bold text-[#0078D4]"><i class="fa-solid fa-paperclip mr-1"></i>첨부
+                            (클립) 버튼</span>을 클릭하고 분석할 PDF 파일을 선택하거나, 파일을 입력창 위로 <strong>끌어다 놓습니다</strong>.
+                        업로드가 완료되면 파일 이름이 입력창에 표시됩니다.
+                    </p>
+                    <!-- 위치 안내 목업 (스크린샷 대체) -->
+                    <div class="mt-3 mock-window" style="min-height:120px;">
+                        <div class="mock-body" style="display:flex;flex-direction:column;justify-content:flex-end;">
+                            <div style="font-size:11px;color:#9CA3AF;margin-bottom:auto;">Copilot Web 입력창 하단</div>
+                            <div style="display:flex;align-items:center;gap:8px;border:1px solid #D1D5DB;border-radius:999px;padding:8px 14px;">
+                                <span class="mock-callout" style="background:#0078D4;"><i class="fa-solid fa-paperclip"></i> 여기 클릭</span>
+                                <span style="font-size:12px;color:#9CA3AF;flex:1;">메시지 입력 또는 파일 첨부…</span>
+                                <i class="fa-solid fa-arrow-up" style="color:#C10933;"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-3 bg-amber-50 border border-amber-200 rounded-xl p-3 flex items-start gap-2">
+                        <i class="fa-solid fa-file-circle-xmark text-amber-500 mt-0.5 shrink-0"></i>
+                        <p class="text-xs text-gray-700"><strong>업로드가 안 되나요?</strong> 파일이 너무 크거나(수십 MB 이상) 스캔본(이미지) PDF면 인식이 어려울 수 있습니다. 이럴 땐 <strong>PDF에서 필요한 부분 텍스트를 복사해 입력창에 직접 붙여넣으면</strong> 결과는 동일합니다. 한 경로에서 막히면 다른 경로(Teams·아웃룩·Web)로 바꿔 시도해 보세요.</p>
+                    </div>
+                </div>
+
+                <div class="relative pl-10">
+                    <div
+                        class="absolute left-0 top-1 w-7 h-7 bg-[#C10933] text-white rounded-full flex items-center justify-center font-bold text-sm">
+                        3</div>
+                    <h3 class="font-bold text-gray-800 text-md">프롬프트 전송</h3>
+                    <p class="text-xs text-gray-500 mt-1">
+                        파일이 첨부된 상태에서 아래 프롬프트를 복사해 붙여넣고 전송합니다. Copilot이 첨부한 PDF 전체를 읽고 요청한 기준에 맞춰 분석해 줍니다.
+                    </p>
+
+                    <div class="prompt-container">
+                        <div class="prompt-header">
+                            <span><i class="fa-regular fa-clipboard mr-1"></i> 복사해서 바로 쓰는 프롬프트</span>
+                            <button onclick="copyPrompt('prompt-pdf')"
+                                class="text-xs bg-white border border-gray-300 hover:bg-gray-50 text-gray-700 px-3 py-1 rounded transition flex items-center gap-1">
+                                <i class="fa-regular fa-copy"></i> 복사하기
+                            </button>
+                        </div>
+                        <div id="prompt-pdf" class="prompt-body">방금 첨부한 PDF 문서 전체를 정독하고, 다음 세 가지 기준에 맞춰 보고서 핵심
+                            내용을 국문(한글)으로 요약해 줘.
+
+                            1. 이 보고서가 말하고자 하는 글로벌 AS/수리 서비스 트렌드 핵심 결론 1줄.
+                            2. LG전자 CC&S(고객가치혁신) 전략 수립에 참고할 수 있는 중요 수치 데이터(%, 건수, 만족도 점수 등)와 트렌드 3가지.
+                            3. 경쟁사(삼성 서비스, Whirlpool 등) 고객 서비스·수리 부문 성과나 혁신 사례가 언급된 경우 해당 내용 요약.
+
+                            답변은 간결하게 불렛포인트로 작성해 줄래?</div>
+                    </div>
+                </div>
+
+                <div class="relative pl-10">
+                    <div
+                        class="absolute left-0 top-1 w-7 h-7 bg-[#C10933] text-white rounded-full flex items-center justify-center font-bold text-sm">
+                        4</div>
+                    <h3 class="font-bold text-gray-800 text-md">결과 검토 후 활용</h3>
+                    <p class="text-xs text-gray-500 mt-1">
+                        요약 결과의 <strong>수치·고유명사가 PDF 원문과 일치하는지</strong> 한 번 확인한 뒤, 보고서나 메일에 활용합니다.
+                        길거나 어렵다면 "더 짧게", "3가지만", "쉽게 풀어서"처럼 추가 요청하세요.
+                    </p>
+                </div>
+            </div>
+
+            <!-- 요약 결과 예시 미리보기 -->
+            <div class="mt-10 bg-white border-2 border-[#C10933] rounded-xl p-5">
+                <p class="text-xs font-bold text-[#C10933] mb-2 uppercase">Copilot 요약 결과 예시 (이렇게 나오면 잘 된 것입니다)</p>
+                <p class="text-xs text-gray-700 leading-relaxed font-medium">
+                    • <strong>핵심 결론</strong>: 글로벌 AS 경쟁력은 '수리 속도'에서 '예측·선제 서비스'로 이동 중<br>
+                    ① 평균 수리 처리 기간이 짧을수록 재구매 의향이 뚜렷하게 상승하는 경향<br>
+                    ② 원격 진단·자가 수리 가이드 등 디지털 서비스 도입 비중이 빠르게 확대<br>
+                    ③ 부품 공급망 안정성이 고객 만족도를 좌우하는 핵심 변수로 부각<br>
+                    ※ 경쟁사 사례: 일부 경쟁사는 부품 사전 비축·우선 처리 제도로 처리 지연 민원을 감축
+                </p>
+                <p class="text-[11px] text-gray-400 mt-2">※ 위 예시는 결과 형태를 보여주기 위한 샘플이며, 실제 수치는 첨부 PDF 원문을 기준으로 확인하세요.</p>
+            </div>
+        </section>
+
+        <!-- 07. [실전 A to Z] 아웃룩 이메일 연동 -->
+        <section id="scenario-outlook" class="content-section">
+            <h2 class="section-header">07. [실전 A to Z] Outlook 이메일 연동 작성법</h2>
+
+            <div class="mb-8 p-4 bg-gray-50 border border-gray-200 rounded-xl flex items-start gap-3">
+                <div class="bg-[#C10933] text-white text-xs font-bold px-2 py-1 rounded">실습 상황</div>
+                <p class="text-xs text-gray-700">
+                    오늘 아침 <strong>정선영 선임(CC&amp;S전략팀 · seony.jeong@lge.com)</strong>이 강의자료와 실습 자료를 첨부한
+                    <strong>교육 안내 메일</strong>을 보냈습니다. 메일 끝에는 참가자에게 간단한 질문 몇 가지가 적혀 있습니다.
+                    아웃룩 Copilot으로 <strong>이 메일에 대한 정중한 답장 초안</strong>을 만들어, 채팅창에서 확인한 뒤
+                    <strong>정선영 선임에게 실제로 회신을 전송</strong>합니다.
+                </p>
+            </div>
+
+            <!-- 오늘 아침 받은 실습 메일 (모든 참가자 동일 수신) -->
+            <h3 class="font-bold text-lg text-gray-800 mb-3">📩 오늘 아침 받은 메일 (이 메일에 회신)</h3>
+            <p class="text-sm text-gray-500 mb-3">아래는 정선영 선임이 모든 참가자에게 보낸 교육 안내 메일입니다. 이 메일에서 <strong>'회신(Reply)'</strong>을 눌러 실습을 진행합니다.</p>
+            <div class="ui-mockup mb-8">
+                <div class="ui-mockup-header">
+                    <span class="dot dot-red"></span><span class="dot dot-yellow"></span><span class="dot dot-green"></span>
+                    <span class="text-xs text-gray-500 ml-2">Outlook — 받은 편지함</span>
+                </div>
+                <div class="p-5 text-xs text-gray-700 leading-relaxed">
+                    <div class="border-b border-gray-200 pb-2 mb-3">
+                        <p><strong>제목:</strong> [AX 기초교육] 강의자료 및 실습 자료 공유드립니다</p>
+                        <p><strong>보낸 사람:</strong> 정선영 / 선임 / CC&amp;S전략팀 &lt;seony.jeong@lge.com&gt;</p>
+                        <p><strong>첨부:</strong> <i class="fa-solid fa-paperclip"></i> AX기초교육_강의자료.pdf · lg_electronics_cc&amp;s_transformation.pdf</p>
+                    </div>
+                    <p class="mb-2">안녕하세요, 고객가치혁신부문 여러분.</p>
+                    <p class="mb-2">오늘 AX 기초교육에 참석해 주셔서 감사합니다. 교육에 사용할 <strong>강의자료</strong>와 <strong>실습 자료</strong>를 첨부로 공유드립니다. 첨부된 영문 보고서 PDF는 오늘 06번 실습(영문 보고서 요약)에 활용하시면 됩니다.</p>
+                    <p class="mb-2">그리고 오늘 07번 실습은 <strong>'아웃룩 Copilot으로 메일 회신 작성하기'</strong>입니다. 연습 삼아, 이 메일에 <strong>회신(Reply)</strong>을 눌러 아래 질문에 대한 답장을 Copilot으로 작성해서 저에게 보내 주세요.</p>
+                    <div class="bg-gray-50 border-l-4 border-[#C10933] rounded-r-lg p-4 mt-3" style="font-size:11px; line-height:1.8;">
+                        <p class="font-bold text-gray-700 mb-2">[회신해 주실 내용]</p>
+                        <p>1. 오늘 실습 중 가장 유용했던 기능 한 가지</p>
+                        <p>2. 평소 업무 중 AI로 줄이고 싶은 반복 작업</p>
+                        <p>3. 추가로 배우고 싶은 내용이나 궁금한 점</p>
+                    </div>
+                    <p class="mb-2 mt-3">편하게 작성해 주시면 됩니다. 여러분의 의견은 다음 교육 개선에 큰 도움이 됩니다.</p>
+                    <p class="mt-3">오늘 교육 유익하게 마무리하시길 바랍니다.<br>정선영 드림</p>
+                </div>
+            </div>
+
+            <!-- 아웃룩 코파일럿 핵심 안내 박스 -->
+            <div class="mb-6 bg-amber-50 border border-amber-300 rounded-xl p-5">
+                <h4 class="font-bold text-amber-900 text-sm mb-3"><i class="fa-solid fa-star mr-2 text-amber-500"></i>꼭
+                    알아야 할 아웃룩 Copilot 핵심 규칙</h4>
+                <div class="space-y-3">
+                    <div class="flex items-start gap-3">
+                        <span
+                            class="mt-0.5 w-5 h-5 bg-amber-400 text-white rounded-full flex items-center justify-center font-bold text-xs flex-shrink-0">①</span>
+                        <p class="text-xs text-gray-800 leading-relaxed">
+                            <strong>메일에 연동된 Copilot은 '우측 상단 아이콘'입니다.</strong><br>
+                            메일을 열면 <strong>메일 화면 우측 상단에 Copilot 아이콘</strong>이 나타납니다. 이 아이콘을 눌러야 현재 열고 있는 메일 내용이 AI와 연동됩니다.
+                            좌측 탭의 Copilot은 일반 대화용이며, 현재 보고 있는 메일 내용이 <strong>자동으로 연동되지 않습니다.</strong>
+                        </p>
+                    </div>
+                    <div class="flex items-start gap-3">
+                        <span
+                            class="mt-0.5 w-5 h-5 bg-red-400 text-white rounded-full flex items-center justify-center font-bold text-xs flex-shrink-0">②</span>
+                        <p class="text-xs text-gray-800 leading-relaxed">
+                            <strong>무료 버전 사용자는 아웃룩 코파일럿만 사용 가능합니다.</strong><br>
+                            M365 무료(기본) 계정 사용자는 Copilot Web 등 다른 코파일럿에서 아웃룩 이메일 데이터가 연동되지 않습니다.
+                            아웃룩 앱에서 메일을 열고 <span class="font-bold text-red-700">우측 상단 Copilot 아이콘</span>을 클릭하는 것이
+                            이메일 직접 연동 경로입니다.
+                        </p>
+                    </div>
+                    <div class="flex items-start gap-3">
+                        <span
+                            class="mt-0.5 w-5 h-5 bg-purple-500 text-white rounded-full flex items-center justify-center font-bold text-xs flex-shrink-0">✦</span>
+                        <p class="text-xs text-gray-800 leading-relaxed">
+                            <strong class="text-purple-700">🔥 아웃룩 Copilot에서만 가능한 숨겨진 기능: Claude 모델 선택!</strong><br>
+                            현재 아웃룩 Copilot에서는 다른 코파일럿과 달리 <strong>AI 모델을 Claude(클로드)로 변경</strong>할 수 있습니다.
+                            아웃룩 Copilot을 열면 <strong>좌측 상단에 '자동'</strong>이라고 표시된 버튼이 있는데, 이 버튼을 눌러 Claude로 모델을 변경하면
+                            더 자연스럽고 풍부한 이메일 답변 초안을 얻을 수 있습니다.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 화면 위치 안내 목업 (스크린샷 대체) -->
+            <h3 class="font-bold text-lg text-gray-800 mb-3">🖥️ 버튼은 화면 어디에 있나요? (위치 안내)</h3>
+            <p class="text-sm text-gray-500 mb-3">실제 화면에서 빨간 테두리로 강조한 두 지점만 찾으면 됩니다.</p>
+            <div class="grid md:grid-cols-2 gap-5 mb-8">
+                <!-- 목업 1: Copilot 버튼 위치 -->
+                <div>
+                    <p class="text-xs font-bold text-gray-600 mb-2">① 아웃룩 좌측 사이드바의 Copilot 버튼</p>
+                    <div class="mock-window">
+                        <div class="mock-rail">
+                            <div class="ric"><i class="fa-solid fa-envelope"></i></div>
+                            <div class="ric"><i class="fa-solid fa-calendar"></i></div>
+                            <div class="ric"><i class="fa-solid fa-user-group"></i></div>
+                            <div class="ric copilot">
+                                <img src="https://static.vecteezy.com/system/resources/previews/046/861/635/non_2x/copilot-icon-transparent-background-free-png.png" alt="Copilot" width="20" height="20" style="display:block;object-fit:contain;">
+                            </div>
+                        </div>
+                        <div class="mock-body">
+                            <div style="font-size:11px;color:#9CA3AF;margin-bottom:8px;">받은 편지함</div>
+                            <div style="height:10px;background:#F3F4F6;border-radius:4px;margin-bottom:6px;width:90%;"></div>
+                            <div style="height:10px;background:#F3F4F6;border-radius:4px;margin-bottom:6px;width:70%;"></div>
+                            <div style="height:10px;background:#F3F4F6;border-radius:4px;width:80%;"></div>
+                            <div style="margin-top:14px;"><span class="mock-callout"><i class="fa-solid fa-arrow-left"></i> 이 Copilot 아이콘 클릭</span></div>
+                        </div>
+                    </div>
+                </div>
+                <!-- 목업 2: 자동 → Claude 모델 선택 -->
+                <div>
+                    <p class="text-xs font-bold text-gray-600 mb-2">② Copilot 창 좌측 상단의 '자동' 버튼 → Claude 선택</p>
+                    <div class="mock-window">
+                        <div class="mock-body">
+                            <div style="display:flex;align-items:center;gap:8px;margin-bottom:14px;">
+                                <span class="mock-pill hl"><i class="fa-solid fa-chevron-down" style="font-size:9px;"></i> 자동</span>
+                                <span style="font-size:11px;color:#9CA3AF;">← 클릭하면 모델 목록</span>
+                            </div>
+                            <div style="border:1px solid #E5E7EB;border-radius:10px;overflow:hidden;width:180px;font-size:12px;">
+                                <div style="padding:7px 12px;border-bottom:1px solid #F3F4F6;color:#6B7280;">자동 (기본)</div>
+                                <div style="padding:7px 12px;border-bottom:1px solid #F3F4F6;color:#6B7280;">GPT</div>
+                                <div style="padding:7px 12px;background:rgba(98,75,255,0.08);color:var(--copilot-purple);font-weight:700;display:flex;justify-content:space-between;align-items:center;">Claude <i class="fa-solid fa-check"></i></div>
+                            </div>
+                            <div style="margin-top:12px;"><span class="mock-callout" style="background:var(--copilot-purple);">Claude 선택!</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <p class="text-xs text-amber-700 mb-4"><i class="fa-solid fa-circle-info mr-1"></i> 위 그림은 위치를 안내하기 위한 간단한 도식이며, 실제 화면 디자인과 다를 수 있습니다.</p>
+
+            <!-- 인라인 해결 박스 -->
+            <div class="grid md:grid-cols-2 gap-4 mb-8">
+                <div class="bg-amber-50 border border-amber-200 rounded-xl p-4">
+                    <p class="font-bold text-amber-900 text-sm mb-1"><i class="fa-solid fa-eye-slash mr-1"></i> Copilot 버튼이 안 보이나요?</p>
+                    <p class="text-xs text-gray-600 mb-3">아웃룩 설정에서 기능이 꺼져 있을 수 있습니다. 켜는 방법을 확인하세요.</p>
+                    <button onclick="openTsModal()" class="btn-hover-effect bg-[#C10933] text-white text-xs font-bold px-3 py-1.5 rounded-lg inline-flex items-center gap-2">
+                        <i class="fa-solid fa-toggle-on"></i> Copilot 켜는 방법 보기
+                    </button>
+                </div>
+                <div class="bg-amber-50 border border-amber-200 rounded-xl p-4">
+                    <p class="font-bold text-amber-900 text-sm mb-1"><i class="fa-solid fa-arrows-rotate mr-1"></i> '자동'(모델 선택) 버튼이 안 보이나요?</p>
+                    <p class="text-xs text-gray-600">모델 선택은 계정·환경에 따라 제공되지 않을 수 있습니다. 이 경우 <strong>기본 모델 그대로</strong> 작성해도 문제없습니다. 잠시 후 다시 시도하거나 IT 담당 부서에 문의하세요.</p>
+                </div>
+            </div>
+
+            <div class="space-y-8">
+                <div class="relative pl-10">
+                    <div
+                        class="absolute left-0 top-1 w-7 h-7 bg-[#C10933] text-white rounded-full flex items-center justify-center font-bold text-sm">
+                        1</div>
+                    <h3 class="font-bold text-gray-800 text-md">정선영 선임의 메일을 열어둔 채로 아웃룩 Copilot 실행</h3>
+                    <p class="text-xs text-gray-500 mt-1">
+                        아웃룩에서 아침에 받은 <strong>정선영 선임의 메일</strong>을 엽니다.
+                        아직 '회신'은 누르지 않고, 좌측 사이드바의 <strong>Copilot 버튼</strong>을 클릭해 아웃룩 Copilot을 켭니다.
+                    </p>
+                </div>
+
+                <div class="relative pl-10">
+                    <div
+                        class="absolute left-0 top-1 w-7 h-7 bg-[#C10933] text-white rounded-full flex items-center justify-center font-bold text-sm">
+                        2</div>
+                    <h3 class="font-bold text-gray-800 text-md">Copilot 창 좌측 상단 '자동' → Claude 모델 변경</h3>
+                    <p class="text-xs text-gray-500 mt-1">
+                        Copilot 창이 열리면 <strong>좌측 상단의 '자동' 버튼</strong>을 눌러 모델을 <strong>Claude(클로드)</strong>로 변경합니다.
+                    </p>
+                </div>
+
+                <div class="relative pl-10">
+                    <div
+                        class="absolute left-0 top-1 w-7 h-7 bg-[#C10933] text-white rounded-full flex items-center justify-center font-bold text-sm">
+                        3</div>
+                    <h3 class="font-bold text-gray-800 text-md">프롬프트 전송 → Copilot 채팅창에서 초안 확인</h3>
+                    <p class="text-xs text-gray-500 mt-1">
+                        아래 프롬프트를 복사해 Copilot 채팅창에 붙여넣고, <strong>[ ] 안을 내 상황에 맞게 채워</strong> 전송합니다.<br>
+                        아웃룩 Copilot은 현재 열려 있는 메일을 자동으로 읽어 참고하며, 결과물은 <strong>메일 원본 창이 아니라 Copilot 채팅창 안에 대화 형식으로 출력</strong>됩니다. 답장 초안이 채팅 메시지처럼 나타나면 정상입니다.
+                        <span class="text-gray-400 block mt-1">(Copilot이 메일 내용을 인식하지 못하는 경우, 위쪽 메일 본문을 직접 복사해 프롬프트 맨 아래에 붙여넣으세요. 영문으로 받고 싶다면 프롬프트 끝에 "영어로 작성해 줘"를 덧붙이면 됩니다.)</span>
+                    </p>
+
+                    <div class="prompt-container">
+                        <div class="prompt-header">
+                            <span><i class="fa-regular fa-clipboard mr-1"></i> 복사해서 바로 쓰는 프롬프트</span>
+                            <button onclick="copyPrompt('prompt-email')"
+                                class="text-xs bg-white border border-gray-300 hover:bg-gray-50 text-gray-700 px-3 py-1 rounded transition flex items-center gap-1">
+                                <i class="fa-regular fa-copy"></i> 복사하기
+                            </button>
+                        </div>
+                        <div id="prompt-email" class="prompt-body">지금 열려 있는 정선영 선임의 교육 안내 메일에 대한 정중한 회신 메일 초안을 작성해 줘. 메일에서 물어본 세 가지 질문에, 아래 내 답변을 자연스럽게 녹여서 비즈니스 이메일 형식으로 써 줘.
+
+                            1. 오늘 가장 유용했던 기능: [예: PDF 영문 보고서를 한글로 요약하는 기능]
+                            2. AI로 줄이고 싶은 반복 업무: [예: 매주 팀별 주간보고 취합·정리]
+                            3. 더 배우고 싶은 내용: [예: 엑셀 데이터 자동 정리 활용법]
+
+                            [어조 및 포맷]
+                            - 사내 선임에게 보내는 정중하고 간결한 비즈니스 어조.
+                            - 감사 인사로 시작하고, 알맞은 맺음말(드림)로 마무리할 것.</div>
+                    </div>
+                </div>
+
+                <div class="relative pl-10">
+                    <div
+                        class="absolute left-0 top-1 w-7 h-7 bg-[#C10933] text-white rounded-full flex items-center justify-center font-bold text-sm">
+                        4</div>
+                    <h3 class="font-bold text-gray-800 text-md">초안 검토 → 회신 본문에 붙여넣어 정선영 선임에게 전송</h3>
+                    <p class="text-xs text-gray-500 mt-1">
+                        Copilot 채팅창의 답장 초안을 읽고 내용이 괜찮다면 <strong>복사</strong>합니다.
+                        원래 메일로 돌아가 <strong>회신(Reply)</strong>을 눌러 작성 창을 열고, 복사한 초안을 붙여넣습니다.
+                        내 실제 의견과 다른 부분이 있으면 <strong>직접 수정</strong>하고, 받는 사람이 <strong>정선영 선임(seony.jeong@lge.com)</strong>으로 되어 있는지 확인한 뒤 전송합니다.
+                    </p>
+                </div>
+            </div>
+
+            <!-- 모범 답안 예시 -->
+            <div class="mt-10">
+                <h3 class="font-bold text-lg text-gray-800 mb-3">✅ 회신 모범 답안 예시 (정선영 선임에게 보내는 회신)</h3>
+                <p class="text-sm text-gray-500 mb-3">내 결과와 비교해 보세요. Copilot이 만든 답장 초안 예시입니다. 내 실제 의견에 맞게 다듬어 보내면 됩니다.</p>
+                <div class="bg-white border-2 border-[#C10933] rounded-xl p-5 font-mono text-xs text-gray-700" style="white-space:pre-line; line-height:1.8;">선임님, 안녕하세요.
+
+오늘 AX 기초교육 잘 들었습니다. 강의자료와 실습 자료 공유해 주셔서 감사합니다. 말씀하신 세 가지 질문에 답변드립니다.
+
+1. 가장 유용했던 기능
+영문 PDF 보고서를 한글로 요약해 주는 기능이 가장 인상 깊었습니다. 평소 해외 자료를 확인하는 데 시간이 많이 걸렸는데, 핵심만 빠르게 파악할 수 있을 것 같습니다.
+
+2. AI로 줄이고 싶은 반복 업무
+매주 팀별 진척 내용을 취합해 주간보고로 정리하는 작업을 자동화해 보고 싶습니다.
+
+3. 더 배우고 싶은 내용
+엑셀 데이터를 자동으로 정리·분석하는 활용법을 추가로 배우면 좋겠습니다.
+
+유익한 교육 준비해 주셔서 다시 한번 감사드립니다.
+
+감사합니다.
+[이름] 드림</div>
+                <p class="text-[11px] text-gray-400 mt-2">※ 위 답변 내용은 예시이며, 실제 본인의 생각으로 바꿔서 보내세요. 영어 답장이 필요하면 프롬프트 끝에 "영어로 작성해 줘"를 덧붙이면 됩니다.</p>
+            </div>
+        </section>
+
+        <!-- 08. [실전 A to Z] 주간보고 요약자료 만들기 -->
+        <section id="ms-cowork" class="content-section">
+            <h2 class="section-header">08. [실전 A to Z] 팀별 원문으로 주간보고 요약자료 만들기</h2>
+
+            <div class="mb-8 p-4 bg-gray-50 border border-gray-200 rounded-xl flex items-start gap-3">
+                <div class="bg-[#C10933] text-white text-xs font-bold px-2 py-1 rounded">실무 상황</div>
+                <p class="text-xs text-gray-700">
+                    매주 금요일, 각 팀에서 보내온 <strong>들쭉날쭉한 형식의 진척 내용</strong>을 취합해 부문 주간보고 A4 한 장으로 정리해야 합니다.
+                    팀마다 말투도, 분량도 제각각이라 손이 많이 가는 일입니다. <strong>아웃룩 Copilot(Claude 모델)</strong>로
+                    팀별 원문을 표준 양식으로 자동 정리해 봅니다.
+                </p>
+            </div>
+
+            <!-- 실습용 팀별 원문 (Claude 작성 샘플 데이터) -->
+            <h3 class="font-bold text-lg text-gray-800 mb-3">📥 실습용 원문 — 이번 주 팀별 진척 내용 (그대로 복사해서 사용)</h3>
+            <p class="text-sm text-gray-500 mb-3">아래는 실습용으로 준비한 <strong>3개 팀의 주간 진척 원문</strong>입니다. 형식이 제각각인 점에 주목하세요. 이 덩어리를 통째로 복사해 실습에 사용합니다.</p>
+            <div class="prompt-container mb-8">
+                <div class="prompt-header">
+                    <span><i class="fa-regular fa-clipboard mr-1"></i> 실습용 팀별 원문 (3개 팀)</span>
+                    <button onclick="copyPrompt('weekly-raw')"
+                        class="text-xs bg-white border border-gray-300 hover:bg-gray-50 text-gray-700 px-3 py-1 rounded transition flex items-center gap-1">
+                        <i class="fa-regular fa-copy"></i> 복사하기
+                    </button>
+                </div>
+                <div id="weekly-raw" class="prompt-body">[기준정보관리팀]
+이번주에 글로벌 품질코드 통합 표준화 건 계속 진행했고요, CNS 개발 PM 확정됐습니다. 다음주(6월 2주차)에 Kick-off 예정이에요. Phase1은 9월 완료 목표로 잡고 있고 NERP/N-GSFS Freezing 일정도 고려해서 가야 합니다. 리스크는 법인별 코드 체계가 달라서 매핑 작업이 생각보다 오래 걸린다는 점. 다음주에 법인 담당자 인터뷰 3건 잡혀있습니다.
+
+[서비스운영팀]
+부품 수급 지연 관련 민원 이번주 12건 접수됨(전주 대비 +3). 브라질 #BR-20260608-1147 건 포함해서 장기 지연 건 5개 우선처리 대상으로 지정했습니다. 원격진단 가이드 베타 오픈해서 상담사 8명 대상 교육 완료했고 반응 괜찮습니다. 다음주에는 우선처리 5건 완료 푸시하고, 부품 ETA 공급망팀이랑 다시 점검하기로 함.
+
+[디지털서비스기획팀]
+셀프 수리 가이드 앱 화면 시안 2차 나왔고 내부 리뷰 진행중입니다. 사용성 테스트는 6월 3주차로 밀렸어요(개발 리소스 이슈). AS 예약 챗봇 시나리오 1차 설계 끝났고 다음주부터 문구 작성 들어갑니다. 이슈는 개발 인력 1명 타 프로젝트 차출돼서 일정 일부 조정 필요.</div>
+            </div>
+
+            <!-- 추천 경로 박스 -->
+            <div class="mb-8 p-5 bg-purple-50 border border-purple-200 rounded-xl">
+                <h4 class="font-bold text-purple-800 text-sm mb-2"><i class="fa-solid fa-star mr-2 text-purple-500"></i>추천 경로: 아웃룩 Copilot + Claude 모델</h4>
+                <p class="text-xs text-gray-700 leading-relaxed">
+                    주간보고처럼 <strong>여러 팀의 글을 자연스러운 보고체로 다듬는 작업</strong>은 글쓰기에 강점이 있는 <strong>Claude 모델</strong>이 특히 잘합니다.
+                    아웃룩 Copilot을 열고 좌측 상단 <strong>'자동' → Claude</strong>로 바꾼 뒤 아래 프롬프트를 사용하세요.
+                    (Copilot Web에서도 동일하게 진행할 수 있습니다.)
+                </p>
+            </div>
+
+            <div class="space-y-8">
+                <div class="relative pl-10">
+                    <div class="absolute left-0 top-1 w-7 h-7 bg-[#C10933] text-white rounded-full flex items-center justify-center font-bold text-sm">1</div>
+                    <h3 class="font-bold text-gray-800 text-md">팀별 요약 프롬프트로 1차 정리</h3>
+                    <p class="text-xs text-gray-500 mt-1">위 실습용 원문을 복사한 뒤, 아래 프롬프트와 함께 붙여넣어 팀별로 <strong>진척/계획/리스크</strong> 3항목으로 표준화합니다.</p>
+                    <div class="prompt-container">
+                        <div class="prompt-header">
+                            <span><i class="fa-regular fa-clipboard mr-1"></i> ① 팀별 표준화 프롬프트</span>
+                            <button onclick="copyPrompt('weekly-p1')" class="text-xs bg-white border border-gray-300 hover:bg-gray-50 text-gray-700 px-3 py-1 rounded transition flex items-center gap-1"><i class="fa-regular fa-copy"></i> 복사하기</button>
+                        </div>
+                        <div id="weekly-p1" class="prompt-body">아래는 우리 부문 3개 팀이 보내온 이번 주 진척 내용이야. 말투와 형식이 제각각인데, 각 팀별로 다음 3개 항목으로 통일된 보고체(개조식, '~함/~완료/~예정')로 정리해 줘.
+
+- 금주 진척: 이번 주에 완료하거나 진행한 핵심 내용
+- 차주 계획: 다음 주에 할 일
+- 리스크/이슈: 지연·자원 부족 등 짚어야 할 사항
+
+각 항목은 1~2줄로 간결하게. 팀 이름은 그대로 유지해 줘.
+
+[팀별 원문]
+(여기에 위 '실습용 팀별 원문' 붙여넣기)</div>
+                    </div>
+                </div>
+
+                <div class="relative pl-10">
+                    <div class="absolute left-0 top-1 w-7 h-7 bg-[#C10933] text-white rounded-full flex items-center justify-center font-bold text-sm">2</div>
+                    <h3 class="font-bold text-gray-800 text-md">부문 종합 요약 프롬프트로 A4 한 장 조립</h3>
+                    <p class="text-xs text-gray-500 mt-1">1차 결과에 이어서 아래 프롬프트를 보내면, 경영진 보고용 <strong>부문 종합 한 장</strong>으로 다시 묶어 줍니다.</p>
+                    <div class="prompt-container">
+                        <div class="prompt-header">
+                            <span><i class="fa-regular fa-clipboard mr-1"></i> ② 부문 종합 조립 프롬프트</span>
+                            <button onclick="copyPrompt('weekly-p2')" class="text-xs bg-white border border-gray-300 hover:bg-gray-50 text-gray-700 px-3 py-1 rounded transition flex items-center gap-1"><i class="fa-regular fa-copy"></i> 복사하기</button>
+                        </div>
+                        <div id="weekly-p2" class="prompt-body">방금 정리한 팀별 내용을 바탕으로, 부문장 보고용 '고객가치혁신부문 주간보고(A4 1장)' 형식으로 다시 정리해 줘.
+
+- 맨 위에 이번 주 부문 전체를 관통하는 핵심 메시지 2~3줄(Headline) 작성.
+- 그 아래에 팀별 섹션(금주 진척 / 차주 계획)을 표 형태로 정리.
+- 맨 마지막에 '부문 공통 리스크 및 의사결정 요청 사항'을 별도로 모아서 정리.
+- 전체적으로 군더더기 없이 보고체로, 경영진이 30초 안에 읽을 수 있게.</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Before / After 미리보기 -->
+            <div class="mt-10 grid md:grid-cols-2 gap-5">
+                <div class="bg-white border border-gray-200 rounded-xl p-5">
+                    <p class="text-xs font-bold text-gray-500 mb-2 uppercase">Before — 받은 원문 (기준정보관리팀)</p>
+                    <p class="text-xs text-gray-600 leading-relaxed">"이번주에 글로벌 품질코드 통합 표준화 건 계속 진행했고요, CNS 개발 PM 확정됐습니다. 다음주에 Kick-off 예정이에요. Phase1은 9월 완료 목표로 잡고 있고… 리스크는 법인별 코드 체계가 달라서 매핑 작업이 오래 걸린다는 점."</p>
+                </div>
+                <div class="bg-white border-2 border-[#C10933] rounded-xl p-5">
+                    <p class="text-xs font-bold text-[#C10933] mb-2 uppercase">After — Copilot(Claude) 정리 결과</p>
+                    <p class="text-xs text-gray-700 leading-relaxed font-medium">
+                        <strong>[기준정보관리팀]</strong><br>
+                        • 금주 진척: 글로벌 품질코드 통합 표준화 진행, CNS 개발 PM 확정<br>
+                        • 차주 계획: 6월 2주차 Kick-off, 법인 담당자 인터뷰 3건<br>
+                        • 리스크: 법인별 코드 체계 상이 → 매핑 작업 지연 우려 (Phase1 9월 완료 목표)
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 09. CC&S 맞춤형 프롬프트 빌더 -->
+        <section id="prompt-builder" class="content-section">
+            <h2 class="section-header">09. CC&amp;S 맞춤형 프롬프트 빌더</h2>
+            <p class="text-gray-600 mb-8">
+                프롬프트를 외울 필요 없습니다. <strong>실행 경로 · 업무 상황 · 어조</strong>만 고르면, 바로 복사해 쓸 수 있는 맞춤형 프롬프트가 자동으로 완성됩니다.
+                수리·상담 회신·주간보고 등 CC&amp;S 실무 상황에 맞춰 골라 보세요.
+            </p>
+
+            <div class="grid md:grid-cols-2 gap-6 items-start">
+                <!-- 선택 패널 -->
+                <div class="bg-white border border-gray-200 rounded-2xl p-6 shadow-sm space-y-5">
+                    <div>
+                        <label class="block text-xs font-bold text-gray-700 mb-2">① 어디서 실행하나요? (실행 경로)</label>
+                        <select id="builder-tool" onchange="updateScenarios()"
+                            class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#C10933]">
+                            <option value="web_pdf">Copilot Web (PDF·웹 문서 요약)</option>
+                            <option value="out_mail">아웃룩 Copilot (메일 회신 초안 작성)</option>
+                            <option value="weekly">아웃룩 Copilot (주간보고 요약자료 작성)</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-gray-700 mb-2">② 어떤 업무인가요? (상황 선택)</label>
+                        <select id="builder-scenario" onchange="updatePromptBuilder()"
+                            class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#C10933]"></select>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-gray-700 mb-2">③ 어떤 어조로 쓸까요? (어조 선택)</label>
+                        <select id="builder-tone" onchange="updatePromptBuilder()"
+                            class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#C10933]">
+                            <option value="formal">격식 있고 정중하게 (대외/보고용)</option>
+                            <option value="concise">군더더기 없이 간결하게 (실무용)</option>
+                            <option value="friendly">부드럽고 친근하게 (사내 공유용)</option>
+                        </select>
+                    </div>
+                    <p id="builder-tip" class="text-xs text-gray-400 bg-gray-50 rounded-lg p-3"></p>
+                </div>
+
+                <!-- 결과 패널 -->
+                <div class="prompt-container m-0">
+                    <div class="prompt-header">
+                        <span><i class="fa-solid fa-bolt mr-1"></i> 완성된 맞춤형 프롬프트</span>
+                        <button onclick="copyPrompt('builder-output')"
+                            class="text-xs bg-white border border-gray-300 hover:bg-gray-50 text-gray-700 px-3 py-1 rounded transition flex items-center gap-1">
+                            <i class="fa-regular fa-copy"></i> 복사하기
+                        </button>
+                    </div>
+                    <div id="builder-output" class="prompt-body" style="min-height:240px;"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 10. 교육 요약 & 핵심 정리 -->
+        <section id="summary" class="content-section" style="border-bottom:none;">
+            <h2 class="section-header">10. 교육 요약 &amp; 핵심 정리</h2>
+            <p class="text-gray-600 mb-8">오늘 배운 내용을 한 장으로 정리했습니다. 자리로 돌아가 바로 써먹을 수 있도록 핵심만 모았습니다.</p>
+
+            <!-- 오늘의 핵심 한 줄 -->
+            <div class="bg-gradient-to-r from-[#C10933] to-[#A00728] rounded-2xl p-7 text-white mb-8">
+                <p class="text-xs font-bold text-red-200 uppercase mb-2">오늘의 핵심 한 줄</p>
+                <p class="text-xl font-bold leading-relaxed">"AI가 사람을 대체하는 게 아니라,<br>AI를 잘 쓰는 사람이 경쟁력을 갖습니다."</p>
+                <p class="text-sm text-red-100 mt-3">복사(Ctrl+C) → 붙여넣기(Ctrl+V) → 전송. 이 3단계면 오늘부터 시작입니다.</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-6 mb-8">
+                <!-- 이론 요약 -->
+                <div class="bg-white border border-gray-200 rounded-2xl p-6 shadow-sm">
+                    <h3 class="font-bold text-gray-800 mb-3"><i class="fa-solid fa-brain text-purple-600 mr-2"></i>AI 이론 핵심</h3>
+                    <ul class="text-sm text-gray-600 space-y-2">
+                        <li>• <strong>AI 모델</strong> = 두뇌(GPT·Claude·Gemini), <strong>에이전트</strong> = 스스로 일하는 직원</li>
+                        <li>• <strong>Copilot</strong>은 특정 모델에 종속되지 않고 GPT·Claude를 골라 쓰는 플랫폼</li>
+                        <li>• 사내 계정 로그인 시 입력 데이터가 외부 학습에 쓰이지 않음(보안)</li>
+                        <li>• AI는 '검증된 사실 창고'가 아닌 '비서' → <strong>검토 후 사용</strong></li>
+                    </ul>
+                </div>
+                <!-- 실무 공식 요약 -->
+                <div class="bg-white border border-gray-200 rounded-2xl p-6 shadow-sm">
+                    <h3 class="font-bold text-gray-800 mb-3"><i class="fa-solid fa-rocket text-orange-500 mr-2"></i>실무 공식 3종</h3>
+                    <ul class="text-sm text-gray-600 space-y-2">
+                        <li>• <strong>PDF·웹 요약</strong>: 영문 보고서를 3분 만에 한글 핵심 요약 (Copilot Web)</li>
+                        <li>• <strong>메일 회신</strong>: 아웃룩 Copilot + Claude로 받은 메일 회신 초안 2분 완성 (한글·영문)</li>
+                        <li>• <strong>주간보고</strong>: 팀별 원문 → 표준 양식 자동 조립 (아웃룩 Copilot + Claude)</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- 접속 경로 & 보안 카드 -->
+            <div class="grid md:grid-cols-2 gap-6 mb-8">
+                <div class="bg-slate-800 rounded-2xl p-6 text-white">
+                    <h3 class="font-bold mb-3"><i class="fa-solid fa-sliders text-blue-300 mr-2"></i>3대 접속 경로</h3>
+                    <div class="space-y-2 text-sm">
+                        <p>① <strong>Teams</strong> — 빠른 질문</p>
+                        <p>② <strong>아웃룩 Copilot</strong> — 메일 요약·회신, Claude 모델 선택</p>
+                        <p>③ <strong>Copilot Web</strong> (m365.cloud.microsoft/chat) — PDF·긴 문서 분석</p>
+                    </div>
+                </div>
+                <div class="bg-red-50 border border-red-200 rounded-2xl p-6">
+                    <h3 class="font-bold text-[#C10933] mb-3"><i class="fa-solid fa-shield-halved mr-2"></i>잊지 말아야 할 보안 3수칙</h3>
+                    <div class="space-y-2 text-sm text-gray-700">
+                        <p>✅ 사내 계정(@lge.com)으로 로그인</p>
+                        <p>❌ 고객 실명·연락처는 비식별화 후 입력</p>
+                        <p>⚠️ 숫자·날짜·이름은 발송 전 직접 검토</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 마무리 CTA -->
+            <div class="bg-gradient-to-br from-slate-800 to-slate-900 rounded-2xl p-8 text-center text-white">
+                <p class="text-lg font-bold mb-2">이제, 자리로 돌아가 딱 하나만 해보세요.</p>
+                <p class="text-sm text-gray-300 mb-5">오늘 받은 메일 한 통을 요약하거나, 회신 초안 하나를 Copilot에게 시켜 보는 것.<br>그 한 번이 AX의 시작입니다.</p>
+                <a href="https://m365.cloud.microsoft/chat" target="_blank" rel="noopener noreferrer"
+                    class="inline-flex items-center gap-2 bg-[#C10933] hover:bg-[#A00728] text-white font-bold px-6 py-3 rounded-xl transition btn-hover-effect">
+                    <i class="fa-solid fa-arrow-up-right-from-square"></i> 지금 Copilot 시작하기
+                </a>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- 트러블슈팅 모달: 아웃룩 Copilot 켜기 -->
+    <div id="ts-modal" class="ts-modal-overlay" onclick="if(event.target===this)closeTsModal()">
+        <div class="ts-modal" role="dialog" aria-modal="true" aria-labelledby="ts-modal-title">
+            <button class="ts-modal-close" onclick="closeTsModal()" aria-label="닫기">&times;</button>
+            <div class="flex items-center gap-3 mb-4">
+                <div class="w-10 h-10 bg-[#C10933] text-white rounded-xl flex items-center justify-center"><i class="fa-solid fa-toggle-on"></i></div>
+                <h3 id="ts-modal-title" class="font-bold text-lg text-gray-800">아웃룩에서 Copilot 켜는 방법</h3>
+            </div>
+            <p class="text-sm text-gray-600 mb-5">아웃룩 설정에서 Copilot이 비활성화되어 있을 수 있습니다. 아래 순서대로 켜 주세요.</p>
+            <ol class="space-y-3">
+                <li class="flex items-start gap-3">
+                    <span class="w-6 h-6 bg-[#C10933] text-white rounded-full flex items-center justify-center font-bold text-xs shrink-0">1</span>
+                    <p class="text-sm text-gray-700">아웃룩 <strong>우측 상단의 ⚙️ 톱니바퀴(설정)</strong> 버튼을 클릭합니다.</p>
+                </li>
+                <li class="flex items-start gap-3">
+                    <span class="w-6 h-6 bg-[#C10933] text-white rounded-full flex items-center justify-center font-bold text-xs shrink-0">2</span>
+                    <p class="text-sm text-gray-700">설정 패널에서 <strong>Copilot 탭</strong>을 선택합니다.</p>
+                </li>
+                <li class="flex items-start gap-3">
+                    <span class="w-6 h-6 bg-[#C10933] text-white rounded-full flex items-center justify-center font-bold text-xs shrink-0">3</span>
+                    <p class="text-sm text-gray-700"><strong>'Copilot 켜기' 토글 버튼을 활성화(ON)</strong>합니다.</p>
+                </li>
+            </ol>
+            <div class="mt-5 bg-amber-50 border border-amber-200 rounded-lg p-3 text-xs text-amber-800">
+                <i class="fa-solid fa-circle-info mr-1"></i> 토글을 켠 뒤에도 보이지 않으면 아웃룩을 한 번 껐다 켜거나, 사내 IT 헬프데스크에 문의하세요.
+            </div>
+            <button onclick="closeTsModal()" class="mt-5 w-full bg-gray-100 hover:bg-gray-200 text-gray-700 font-bold py-2.5 rounded-lg transition text-sm">확인했어요</button>
+        </div>
+    </div>
+
+    <!-- 복사 완료 토스트 -->
+    <div id="toast" style="position:fixed;bottom:30px;left:50%;transform:translateX(-50%) translateY(100px);background:#1F1F1F;color:#fff;padding:12px 24px;border-radius:999px;font-size:14px;font-weight:600;box-shadow:0 8px 24px rgba(0,0,0,0.2);opacity:0;transition:all 0.3s ease;z-index:1000;">
+        <i class="fa-solid fa-check-circle mr-1 text-green-400"></i> 복사되었습니다!
+    </div>
+
+    <script>
+        // ── 프롬프트 복사 ──
+        function copyPrompt(id) {
+            const el = document.getElementById(id);
+            if (!el) return;
+            const text = el.innerText;
+            navigator.clipboard.writeText(text).then(showToast).catch(() => {
+                const ta = document.createElement('textarea');
+                ta.value = text;
+                document.body.appendChild(ta);
+                ta.select();
+                document.execCommand('copy');
+                document.body.removeChild(ta);
+                showToast();
+            });
+        }
+
+        function showToast() {
+            const t = document.getElementById('toast');
+            t.style.opacity = '1';
+            t.style.transform = 'translateX(-50%) translateY(0)';
+            setTimeout(() => {
+                t.style.opacity = '0';
+                t.style.transform = 'translateX(-50%) translateY(100px)';
+            }, 1800);
+        }
+
+        // ── 트러블슈팅 모달 ──
+        function openTsModal() {
+            document.getElementById('ts-modal').classList.add('open');
+            document.body.style.overflow = 'hidden';
+        }
+        function closeTsModal() {
+            document.getElementById('ts-modal').classList.remove('open');
+            document.body.style.overflow = '';
+        }
+        document.addEventListener('keydown', function (e) {
+            if (e.key === 'Escape') closeTsModal();
+        });
+
+        // ── 프롬프트 빌더 ──
+        const builderData = {
+            web_pdf: {
+                tip: "Copilot Web(m365.cloud.microsoft/chat)에 PDF를 첨부하거나 웹 문서 내용을 붙여넣고 사용하세요.",
+                scenarios: [
+                    { label: "영문 보고서 핵심 요약", base: "방금 첨부한 영문 PDF 문서를 정독하고, 핵심 결론 1줄과 중요 수치·트렌드 3가지를 한글 불렛포인트로 요약해 줘." },
+                    { label: "긴 웹 문서/기사 요약", base: "아래 붙여넣은 웹 문서 내용을 읽고, 우리 업무에 참고할 핵심 포인트만 5줄 이내로 한글 요약해 줘.\n\n[내용]\n(여기에 붙여넣기)" },
+                    { label: "경쟁사 동향 정리", base: "아래 자료에서 경쟁사 고객 서비스·수리 부문 관련 내용만 골라, 시사점 중심으로 정리해 줘.\n\n[내용]\n(여기에 붙여넣기)" }
+                ]
+            },
+            out_mail: {
+                tip: "아웃룩 앱에서 회신할 메일을 연 뒤, 좌측 사이드바 Copilot을 켜고 '자동' → Claude로 바꿔 사용하면 더 자연스럽습니다.",
+                scenarios: [
+                    { label: "안내·요청 메일에 정중히 회신", base: "지금 열려 있는 메일에 대해, 다음 조건으로 정중한 비즈니스 회신 초안을 작성해 줘.\n1. 메일을 보내 주신 데 대한 감사 인사로 시작.\n2. 메일에서 요청하거나 질문한 사항에 대한 답변을 명확히 정리.\n3. 추가로 확인이 필요한 사항이 있으면 정중히 문의.\n4. 알맞은 맺음말(드림)로 마무리." },
+                    { label: "협업 요청 메일에 회신", base: "지금 열려 있는 협업·업무 협조 요청 메일에 대해, 협조 가능 여부와 진행 방식을 정리한 정중하고 간결한 회신 초안을 써 줘." },
+                    { label: "받은 메일 요약 후 회신 포인트", base: "지금 열려 있는 메일 내용을 3줄로 요약하고, 회신할 때 꼭 짚어야 할 포인트 3가지를 정리해 줘." }
+                ]
+            },
+            weekly: {
+                tip: "팀별 원문을 복사해 프롬프트 맨 아래에 붙여넣으세요. 글을 다듬는 작업은 Claude 모델이 특히 잘합니다.",
+                scenarios: [
+                    { label: "팀별 진척 표준화(개조식)", base: "아래 팀별 원문을 팀별로 '금주 진척 / 차주 계획 / 리스크' 3개 항목, 보고체(개조식)로 통일해 정리해 줘.\n\n[팀별 원문]\n(여기에 붙여넣기)" },
+                    { label: "부문 종합 A4 한 장 조립", base: "아래 팀별 정리 내용을 부문장 보고용 '주간보고 A4 1장'으로 묶어 줘. 맨 위 핵심 메시지 2~3줄, 팀별 표, 마지막에 공통 리스크/의사결정 요청을 넣어줘.\n\n[팀별 정리 내용]\n(여기에 붙여넣기)" },
+                    { label: "핵심 메시지(Headline)만 추출", base: "아래 주간보고 내용에서 경영진이 가장 먼저 알아야 할 핵심 메시지(Headline) 2~3줄만 뽑아 줘.\n\n[내용]\n(여기에 붙여넣기)" }
+                ]
+            }
+        };
+
+        const toneDescriptions = {
+            formal: "\n\n[어조] 격식 있고 정중한, 전문적인 비즈니스 어조로 작성해 줘.",
+            concise: "\n\n[어조] 군더더기 없이 간결한 실무 보고체로 작성해 줘.",
+            friendly: "\n\n[어조] 부드럽고 친근하지만 예의 있는 사내 공유용 어조로 작성해 줘."
+        };
+
+        function updateScenarios() {
+            const tool = document.getElementById('builder-tool').value;
+            const scenarioSel = document.getElementById('builder-scenario');
+            scenarioSel.innerHTML = '';
+            builderData[tool].scenarios.forEach((s, i) => {
+                const opt = document.createElement('option');
+                opt.value = i;
+                opt.textContent = s.label;
+                scenarioSel.appendChild(opt);
+            });
+            document.getElementById('builder-tip').textContent = builderData[tool].tip;
+            updatePromptBuilder();
+        }
+
+        function updatePromptBuilder() {
+            const tool = document.getElementById('builder-tool').value;
+            const sIdx = document.getElementById('builder-scenario').value || 0;
+            const tone = document.getElementById('builder-tone').value;
+            const base = builderData[tool].scenarios[sIdx].base;
+            document.getElementById('builder-output').innerText = base + (toneDescriptions[tone] || '');
+        }
+
+        // ── 사이드바 스크롤 하이라이트 ──
+        const sections = document.querySelectorAll('.content-section');
+        const navItems = document.querySelectorAll('.curriculum-item');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const id = entry.target.getAttribute('id');
+                    navItems.forEach(item => {
+                        item.classList.toggle('active', item.getAttribute('href') === '#' + id);
+                    });
+                }
+            });
+        }, { rootMargin: '-40% 0px -55% 0px' });
+        sections.forEach(s => observer.observe(s));
+
+        // ── 초기화 ──
+        document.addEventListener('DOMContentLoaded', function () {
+            updateScenarios();
+        });
+    </script>
+</body>
+
+</html>

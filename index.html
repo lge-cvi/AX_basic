@@ -1982,24 +1982,29 @@
             <h3 class="font-bold text-lg text-gray-800 mb-3">🖥️ 버튼은 화면 어디에 있나요? (위치 안내)</h3>
             <p class="text-sm text-gray-500 mb-3">실제 화면에서 빨간 테두리로 강조한 두 지점만 찾으면 됩니다.</p>
             <div class="grid md:grid-cols-2 gap-5 mb-8">
-                <!-- 목업 1: Copilot 버튼 위치 -->
+                <!-- 목업 1: 우측 상단 Copilot 아이콘 위치 -->
                 <div>
-                    <p class="text-xs font-bold text-gray-600 mb-2">① 아웃룩 좌측 사이드바의 Copilot 버튼</p>
-                    <div class="mock-window">
-                        <div class="mock-rail">
-                            <div class="ric"><i class="fa-solid fa-envelope"></i></div>
-                            <div class="ric"><i class="fa-solid fa-calendar"></i></div>
-                            <div class="ric"><i class="fa-solid fa-user-group"></i></div>
-                            <div class="ric copilot">
-                                <img src="https://static.vecteezy.com/system/resources/previews/046/861/635/non_2x/copilot-icon-transparent-background-free-png.png" alt="Copilot" width="20" height="20" style="display:block;object-fit:contain;">
-                            </div>
+                    <p class="text-xs font-bold text-gray-600 mb-2">① 메일을 열면 — 우측 상단 Copilot 아이콘 클릭</p>
+                    <div class="mock-window" style="overflow:hidden;">
+                        <!-- 이메일 뷰 상단 바 -->
+                        <div style="display:flex;align-items:center;justify-content:space-between;padding:7px 10px;background:#F3F4F6;border-bottom:1px solid #E5E7EB;">
+                            <span style="font-size:10px;color:#374151;font-weight:600;max-width:130px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">[AX 기초교육] 강의자료 공유</span>
+                            <span style="display:flex;align-items:center;gap:6px;">
+                                <span style="font-size:13px;color:#9CA3AF;">↩</span>
+                                <span style="font-size:13px;color:#9CA3AF;">↪</span>
+                                <span style="display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;border-radius:50%;border:2px solid #C10933;box-shadow:0 0 0 3px rgba(193,9,51,0.18);">
+                                    <img src="https://static.vecteezy.com/system/resources/previews/046/861/635/non_2x/copilot-icon-transparent-background-free-png.png" alt="Copilot" width="14" height="14" style="display:block;object-fit:contain;">
+                                </span>
+                            </span>
                         </div>
                         <div class="mock-body">
-                            <div style="font-size:11px;color:#9CA3AF;margin-bottom:8px;">받은 편지함</div>
-                            <div style="height:10px;background:#F3F4F6;border-radius:4px;margin-bottom:6px;width:90%;"></div>
-                            <div style="height:10px;background:#F3F4F6;border-radius:4px;margin-bottom:6px;width:70%;"></div>
-                            <div style="height:10px;background:#F3F4F6;border-radius:4px;width:80%;"></div>
-                            <div style="margin-top:14px;"><span class="mock-callout"><i class="fa-solid fa-arrow-left"></i> 이 Copilot 아이콘 클릭</span></div>
+                            <div style="font-size:10px;color:#6B7280;margin-bottom:6px;">정선영 &lt;seony.jeong@lge.com&gt;</div>
+                            <div style="height:9px;background:#F3F4F6;border-radius:3px;margin-bottom:5px;width:90%;"></div>
+                            <div style="height:9px;background:#F3F4F6;border-radius:3px;margin-bottom:5px;width:70%;"></div>
+                            <div style="height:9px;background:#F3F4F6;border-radius:3px;width:80%;"></div>
+                            <div style="margin-top:12px;display:flex;justify-content:flex-end;">
+                                <span class="mock-callout"><i class="fa-solid fa-arrow-up-right"></i> 우측 상단 Copilot 아이콘 클릭!</span>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -2044,10 +2049,11 @@
                     <div
                         class="absolute left-0 top-1 w-7 h-7 bg-[#C10933] text-white rounded-full flex items-center justify-center font-bold text-sm">
                         1</div>
-                    <h3 class="font-bold text-gray-800 text-md">정선영 선임의 메일을 열어둔 채로 아웃룩 Copilot 실행</h3>
+                    <h3 class="font-bold text-gray-800 text-md">정선영 선임의 메일을 열고 — 우측 상단 Copilot 아이콘 클릭</h3>
                     <p class="text-xs text-gray-500 mt-1">
                         아웃룩에서 아침에 받은 <strong>정선영 선임의 메일</strong>을 엽니다.
-                        아직 '회신'은 누르지 않고, 좌측 사이드바의 <strong>Copilot 버튼</strong>을 클릭해 아웃룩 Copilot을 켭니다.
+                        아직 '회신'은 누르지 않고, 메일 화면 <strong>우측 상단에 나타나는 Copilot 아이콘</strong>을 클릭해 아웃룩 Copilot을 켭니다.
+                        <span class="text-amber-600">(좌측 탭 Copilot은 메일 내용이 연동되지 않으니 주의!)</span>
                     </p>
                 </div>
 
@@ -2382,6 +2388,67 @@
         </div>
     </div>
 
+    <!-- 아웃룩 Copilot 위치 구분 팝업 -->
+    <div id="copilot-loc-modal" class="ts-modal-overlay" onclick="if(event.target===this)closeCopilotLocModal()">
+        <div class="ts-modal" style="max-width:600px;" role="dialog" aria-modal="true">
+            <button class="ts-modal-close" onclick="closeCopilotLocModal()" aria-label="닫기">&times;</button>
+            <div class="flex items-center gap-3 mb-5">
+                <div class="w-10 h-10 bg-purple-600 text-white rounded-xl flex items-center justify-center">
+                    <img src="https://static.vecteezy.com/system/resources/previews/046/861/635/non_2x/copilot-icon-transparent-background-free-png.png" width="22" height="22" style="object-fit:contain;">
+                </div>
+                <h3 class="font-bold text-lg text-gray-800">아웃룩 Copilot — 두 버튼의 차이</h3>
+            </div>
+            <div class="grid grid-cols-2 gap-4 mb-5">
+                <!-- 좌측 탭 -->
+                <div class="border border-gray-200 rounded-xl p-4 bg-gray-50">
+                    <p class="font-bold text-gray-700 text-sm mb-0.5">📌 좌측 탭 Copilot</p>
+                    <p class="text-xs text-gray-400 mb-3">(공식 2: 아웃룩 앱 사이드바)</p>
+                    <!-- 미니 목업: 좌측 탭 -->
+                    <div style="border:1px solid #E5E7EB;border-radius:10px;overflow:hidden;background:#fff;display:flex;height:70px;">
+                        <div style="width:32px;background:#F3F4F6;border-right:1px solid #E5E7EB;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;padding:4px 0;">
+                            <span style="font-size:11px;color:#9CA3AF;">✉</span>
+                            <span style="font-size:11px;color:#9CA3AF;">📅</span>
+                            <span style="display:inline-flex;align-items:center;justify-content:center;width:18px;height:18px;border-radius:50%;background:#EDE9FE;">
+                                <img src="https://static.vecteezy.com/system/resources/previews/046/861/635/non_2x/copilot-icon-transparent-background-free-png.png" width="11" height="11" style="object-fit:contain;">
+                            </span>
+                        </div>
+                        <div style="flex:1;padding:8px;display:flex;flex-direction:column;justify-content:center;">
+                            <div style="height:6px;background:#F3F4F6;border-radius:3px;margin-bottom:4px;width:80%;"></div>
+                            <div style="height:6px;background:#F3F4F6;border-radius:3px;width:60%;"></div>
+                        </div>
+                    </div>
+                    <p class="text-xs text-gray-600 mt-3">일반 질문·초안 작성에 활용.<br><strong class="text-amber-600">현재 열고 있는 메일 미연동.</strong></p>
+                </div>
+                <!-- 우측 상단 아이콘 -->
+                <div class="border-2 border-[#C10933] rounded-xl p-4 bg-red-50">
+                    <p class="font-bold text-[#C10933] text-sm mb-0.5">✅ 우측 상단 Copilot 아이콘</p>
+                    <p class="text-xs text-gray-400 mb-3">(메일 열었을 때 상단에 표시)</p>
+                    <!-- 미니 목업: 우측 상단 -->
+                    <div style="border:1px solid #E5E7EB;border-radius:10px;overflow:hidden;background:#fff;">
+                        <div style="display:flex;align-items:center;justify-content:space-between;padding:5px 8px;background:#F3F4F6;border-bottom:1px solid #E5E7EB;">
+                            <span style="font-size:9px;color:#374151;font-weight:600;">RE: [AX 기초교육]</span>
+                            <span style="display:flex;align-items:center;gap:4px;">
+                                <span style="font-size:11px;color:#9CA3AF;">↩</span>
+                                <span style="display:inline-flex;align-items:center;justify-content:center;width:18px;height:18px;border-radius:50%;border:2px solid #C10933;box-shadow:0 0 0 2px rgba(193,9,51,0.2);">
+                                    <img src="https://static.vecteezy.com/system/resources/previews/046/861/635/non_2x/copilot-icon-transparent-background-free-png.png" width="11" height="11" style="object-fit:contain;">
+                                </span>
+                            </span>
+                        </div>
+                        <div style="padding:8px;">
+                            <div style="height:6px;background:#F3F4F6;border-radius:3px;margin-bottom:4px;width:85%;"></div>
+                            <div style="height:6px;background:#F3F4F6;border-radius:3px;width:65%;"></div>
+                        </div>
+                    </div>
+                    <p class="text-xs text-gray-600 mt-3">열고 있는 메일 내용이 Copilot에 <strong class="text-green-700">자동 연동</strong>됩니다.<br>회신 초안 작성은 이 버튼으로!</p>
+                </div>
+            </div>
+            <div class="bg-amber-50 border border-amber-200 rounded-lg p-3 text-xs text-amber-800 mb-4">
+                <i class="fa-solid fa-circle-info mr-1"></i> 메일을 열지 않고 아웃룩을 실행만 한 상태에서는 우측 상단 아이콘이 보이지 않을 수 있습니다. 먼저 메일을 클릭해 열어주세요.
+            </div>
+            <button onclick="closeCopilotLocModal()" class="w-full bg-gray-100 hover:bg-gray-200 text-gray-700 font-bold py-2.5 rounded-lg transition text-sm">확인했어요</button>
+        </div>
+    </div>
+
     <!-- 복사 완료 토스트 -->
     <div id="toast" style="position:fixed;bottom:30px;left:50%;transform:translateX(-50%) translateY(100px);background:#1F1F1F;color:#fff;padding:12px 24px;border-radius:999px;font-size:14px;font-weight:600;box-shadow:0 8px 24px rgba(0,0,0,0.2);opacity:0;transition:all 0.3s ease;z-index:1000;">
         <i class="fa-solid fa-check-circle mr-1 text-green-400"></i> 복사되었습니다!
@@ -2423,8 +2490,18 @@
             document.getElementById('ts-modal').classList.remove('open');
             document.body.style.overflow = '';
         }
+
+        function openCopilotLocModal() {
+            document.getElementById('copilot-loc-modal').classList.add('open');
+            document.body.style.overflow = 'hidden';
+        }
+        function closeCopilotLocModal() {
+            document.getElementById('copilot-loc-modal').classList.remove('open');
+            document.body.style.overflow = '';
+        }
+
         document.addEventListener('keydown', function (e) {
-            if (e.key === 'Escape') closeTsModal();
+            if (e.key === 'Escape') { closeTsModal(); closeCopilotLocModal(); }
         });
 
         // ── 프롬프트 빌더 ──
@@ -2438,7 +2515,7 @@
                 ]
             },
             out_mail: {
-                tip: "아웃룩 앱에서 회신할 메일을 연 뒤, 좌측 사이드바 Copilot을 켜고 '자동' → Claude로 바꿔 사용하면 더 자연스럽습니다.",
+                tip: "아웃룩 앱에서 회신할 메일을 연 뒤, 메일 우측 상단의 Copilot 아이콘을 클릭하고 '자동' → Claude로 바꿔 사용하면 더 자연스럽습니다.",
                 scenarios: [
                     { label: "안내·요청 메일에 정중히 회신", base: "지금 열려 있는 메일에 대해, 다음 조건으로 정중한 비즈니스 회신 초안을 작성해 줘.\n1. 메일을 보내 주신 데 대한 감사 인사로 시작.\n2. 메일에서 요청하거나 질문한 사항에 대한 답변을 명확히 정리.\n3. 추가로 확인이 필요한 사항이 있으면 정중히 문의.\n4. 알맞은 맺음말(드림)로 마무리." },
                     { label: "협업 요청 메일에 회신", base: "지금 열려 있는 협업·업무 협조 요청 메일에 대해, 협조 가능 여부와 진행 방식을 정리한 정중하고 간결한 회신 초안을 써 줘." },
